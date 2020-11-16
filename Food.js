@@ -19,25 +19,7 @@ class Food extends Component {
     const { navigation } = this.props;
     return (
       <View style={{ flex: 1,backgroundColor:"#F1F1F1" ,paddingTop: Constants.statusBarHeight,}}>
-      <View style={styles.header}>
-        <View style={{flex:1,justifyContent:'center'}}>
-          <Text style={{color:"white",fontSize:15,marginLeft:15}}>CPEขี้เมา</Text>
-        </View>
-
-        <View style={{flexDirection:'row',flex:1,justifyContent:'flex-end',alignItems:'center'}}>
-          <TouchableOpacity>
-            <View style={{backgroundColor:'#565656',width:40,height:40,borderRadius:6,justifyContent:'center',alignItems:'center',marginRight:15}}>
-              <FontAwesome5 style={{margin:5}} name="user-friends" size={20} color="white" />
-            </View>
-            </TouchableOpacity>
-            <TouchableOpacity>
-            <View style={{backgroundColor:'#565656',width:40,height:40,borderRadius:6,justifyContent:'center',alignItems:'center',marginRight:10}}>
-                <Entypo style={{margin:5}} name="chat" size={24} color="white" />
-            </View>
-            </TouchableOpacity>
-        </View>
-        
-      </View>
+      
   </View>
     );
   }

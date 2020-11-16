@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import {
-  View,Text
+  View,Text,TouchableOpacity
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -9,7 +9,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
-
+import { FontAwesome5 } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import Constants from 'expo-constants';
 import Spalsh from './Spalsh'
 import Login from './Login'
 import Register from './Register'
@@ -87,24 +89,45 @@ const SongScreen =()=> {
 const Stack = createStackNavigator();
 const MyStack=()=>{
       return (
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{
+          headerTintColor:'white',
+          headerStyle:{
+            backgroundColor:'black'
+          }
+        }}>
           <Stack.Screen name="Spalsh" 
             component={SpalshScreen} 
             options={{ headerShown: false}}/>
 
           <Stack.Screen name="Login" 
             component={LoginScreen} 
-            options={{ headerShown: true}}/>
+            options={{ headerShown: false}}/>
 
           <Stack.Screen name="Register" 
             component={RegisterScreen} 
-            options={{ headerShown: true}}/>
+            options={{ headerShown: false}}/>
 
           <Stack.Screen name="ForgotPassword" 
             component={ForgotPasswordScreen} 
-            options={{ headerShown: true}}/>
+            options={{ headerShown: false}}/>
           
-          <Stack.Screen options={{headerShown:false}} name="Bottomtab" component={MyBottomTab}/>
+          <Stack.Screen options={{
+            title: "CPEขี้เมา",
+
+          headerRight: () => (
+            <View style={{flexDirection:'row',flex:1,justifyContent:'flex-end',alignItems:'center'}}>
+                <TouchableOpacity>
+                    <View style={{backgroundColor:'#565656',width:40,height:40,borderRadius:6,justifyContent:'center',alignItems:'center',marginRight:15}}>
+                      <FontAwesome5 style={{margin:5}} name="user-friends" size={20} color="white" />
+                    </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                    <View style={{backgroundColor:'#565656',width:40,height:40,borderRadius:6,justifyContent:'center',alignItems:'center',marginRight:10}}>
+                        <Entypo style={{margin:5}} name="chat" size={24} color="white" />
+                    </View>
+                  </TouchableOpacity>
+            </View>
+          )}} name="Bottomtab" component={MyBottomTab}/>
 
         </Stack.Navigator>
       );
@@ -140,16 +163,16 @@ const TopTab = createMaterialTopTabNavigator();
 function MyTopTap(){
   return(
     <TopTab.Navigator  tabBarOptions={{activeTintColor:"black",
-    inactiveColor:"gray",
+    //inactiveColor:"white",
     backgroundColor:'#black',
     pressColor:'black',
     style:{
       backgroundColor: 'white',
       position: 'absolute',
-      top:"13%",
+      top:"3%",
       right: 10,
       left: 10,
-      borderRadius:25
+      borderRadius:5
     }}}>
       <TopTab.Screen name="Home" component={HomeScreen}/>
       <TopTab.Screen name="Food" component={FoodScreen}/>

@@ -82,7 +82,7 @@ class Login extends Component {
                     <Text style={{color:"#009db1",marginTop:15}}>Forgot password?</Text>
                 </TouchableOpacity>
                 <View style={styles.botton}>
-                    <TouchableOpacity style={styles.signin} onPress={()=>this.props.navigation.navigate('Bottomtab')} >
+                    <TouchableOpacity style={styles.signin} onPress={()=>this.props.navigation.reset({index:0,routes:[{name:'Bottomtab'}]}) } >
                         <Text style={styles.text_singIn}>SignIn</Text>
                     </TouchableOpacity>
 
