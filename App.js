@@ -139,16 +139,17 @@ function MyBottomTab(){
 const TopTab = createMaterialTopTabNavigator();
 function MyTopTap(){
   return(
-    <TopTab.Navigator  tabBarOptions={{activeTintColor:"white",
+    <TopTab.Navigator  tabBarOptions={{activeTintColor:"black",
     inactiveColor:"gray",
-    backgroundColor:'#000000',
+    backgroundColor:'#black',
+    pressColor:'black',
     style:{
-      backgroundColor: '#000000',
+      backgroundColor: 'white',
       position: 'absolute',
-      top:"15%",
-      right: 0,
-      left: 0,
-      borderRadius:20
+      top:"13%",
+      right: 10,
+      left: 10,
+      borderRadius:25
     }}}>
       <TopTab.Screen name="Home" component={HomeScreen}/>
       <TopTab.Screen name="Food" component={FoodScreen}/>

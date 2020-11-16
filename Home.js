@@ -41,7 +41,6 @@ class Home extends Component {
               </View>
               
             </View>
-            <Text style={{color:"white",justifyContent:'center',alignItems:'center'}}>Home</Text>
         </View>
     );
   }
