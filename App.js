@@ -16,6 +16,11 @@ import Register from './Register'
 import Home from './Home'
 import Song from './Song'
 import ForgotPassword from './ForgotPassword'
+import QrCode from './QrCode'
+import Profile from './Profile'
+import Food from './Food'
+
+import { AntDesign } from '@expo/vector-icons';
 
 const SpalshScreen =()=> {
   const navigation = useNavigation();
@@ -65,6 +70,18 @@ const ProfileScreen =()=> {
     <Profile navigation={navigation} />
   );
 }
+const FoodScreen =()=> {
+  const navigation = useNavigation();
+  return (
+    <Food navigation={navigation} />
+  );
+}
+const SongScreen =()=> {
+  const navigation = useNavigation();
+  return (
+    <Song navigation={navigation} />
+  );
+}
 
 const Stack = createStackNavigator();
 const MyStack=()=>{
@@ -72,7 +89,7 @@ const MyStack=()=>{
         <Stack.Navigator>
           <Stack.Screen name="Spalsh" 
             component={SpalshScreen} 
-            options={{ headerShown: true}}/>
+            options={{ headerShown: false}}/>
 
           <Stack.Screen name="Login" 
             component={LoginScreen} 
@@ -95,9 +112,12 @@ const MyStack=()=>{
 const BottomTab=createBottomTabNavigator();
 function MyBottomTab(){
   return(
-    <BottomTab.Navigator tabBarOptions={{activeTintColor:"#e91e63"}}>
+    <BottomTab.Navigator 
+      activeColor="white"
+      inactiveColor="gray">
       <BottomTab.Screen 
-      name="Home" component={HomeScreen}/>
+      options={{tabBarIcon:({color})=>(<AntDesign name="home" size={24} color={color} />)}} 
+      name="TopTap" component={MyTopTap}/>
 
     <BottomTab.Screen 
       name="QrCode" component={QrCodeScreen}/>
@@ -106,6 +126,17 @@ function MyBottomTab(){
       name="Profile" component={ProfileScreen}/>
       
     </BottomTab.Navigator>
+  );
+}
+
+const TopTab = createMaterialTopTabNavigator();
+function MyTopTap(){
+  return(
+    <TopTab.Navigator>
+      <TopTab.Screen name="Home" component={HomeScreen}/>
+      <TopTab.Screen name="Food" component={FoodScreen}/>
+      <TopTab.Screen name="Song" component={SongScreen}/>
+    </TopTab.Navigator>
   );
 }
 
