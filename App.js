@@ -45,6 +45,27 @@ const ForgotPasswordScreen =()=> {
   );
 }
 
+const HomeScreen =()=> {
+  const navigation = useNavigation();
+  return (
+    <Home navigation={navigation} />
+  );
+}
+
+const QrCodeScreen =()=> {
+  const navigation = useNavigation();
+  return (
+    <QrCode navigation={navigation} />
+  );
+}
+
+const ProfileScreen =()=> {
+  const navigation = useNavigation();
+  return (
+    <Profile navigation={navigation} />
+  );
+}
+
 const Stack = createStackNavigator();
 const MyStack=()=>{
       return (
@@ -64,9 +85,28 @@ const MyStack=()=>{
           <Stack.Screen name="ForgotPassword" 
             component={ForgotPasswordScreen} 
             options={{ headerShown: true}}/>
+          
+          <Stack.Screen options={{headerShown:false}} name="Bottomtab" component={MyBottomTab}/>
 
         </Stack.Navigator>
       );
+}
+
+const BottomTab=createBottomTabNavigator();
+function MyBottomTab(){
+  return(
+    <BottomTab.Navigator tabBarOptions={{activeTintColor:"#e91e63"}}>
+      <BottomTab.Screen 
+      name="Home" component={HomeScreen}/>
+
+    <BottomTab.Screen 
+      name="QrCode" component={QrCodeScreen}/>
+      
+    <BottomTab.Screen 
+      name="Profile" component={ProfileScreen}/>
+      
+    </BottomTab.Navigator>
+  );
 }
 
 export default class App extends Component {
