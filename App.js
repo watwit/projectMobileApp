@@ -90,7 +90,7 @@ const Stack = createStackNavigator();
 const MyStack=()=>{
       return (
         <Stack.Navigator screenOptions={{
-          headerTintColor:'white',
+          headerTintColor:'blue',
           headerStyle:{
             backgroundColor:'black'
           }
