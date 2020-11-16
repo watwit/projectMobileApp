@@ -139,6 +139,7 @@ function MyBottomTab(){
 const TopTab = createMaterialTopTabNavigator();
 function MyTopTap(){
   return(
+<<<<<<< HEAD
     <TopTab.Navigator  tabBarOptions={{
       activeTintColor: 'black',
       indicatorStyle:{
@@ -146,13 +147,25 @@ function MyTopTap(){
         height:3
       },
       labelStyle: { fontSize: 16,fontWeight:"bold"},
+=======
+    <TopTab.Navigator  tabBarOptions={{activeTintColor:"black",
+    inactiveColor:"gray",
+    backgroundColor:'#black',
+    pressColor:'black',
+>>>>>>> 4c958e4866fc348f47b9f6d90bbb9b7625f1f581
     style:{
       backgroundColor: 'white',
       position: 'absolute',
       top:"13%",
+<<<<<<< HEAD
       right:10,
       left:10,
       borderRadius:5,
+=======
+      right: 10,
+      left: 10,
+      borderRadius:25
+>>>>>>> 4c958e4866fc348f47b9f6d90bbb9b7625f1f581
     }}}>
       <TopTab.Screen 
       
