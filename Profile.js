@@ -15,7 +15,7 @@ class Profile extends Component {
   render(props) {
     const { navigation } = this.props;
     return (
-        <View style={{ flex: 1,backgroundColor:"#000000" }}>
+      <View style={{ flex: 1,backgroundColor:"#000000",justifyContent:"center",alignItems:'center' }}>
             <Text style={{color:"white"}}>Profile</Text>
         </View>
     );

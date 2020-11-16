@@ -15,8 +15,8 @@ class Home extends Component {
   render(props) {
     const { navigation } = this.props;
     return (
-        <View style={{ flex: 1,backgroundColor:"#000000" }}>
-            <Text style={{color:"white"}}>Home</Text>
+        <View style={{ flex: 1,backgroundColor:"#000000",justifyContent:"center",alignItems:'center' }}>
+            <Text style={{color:"red"}}>Home</Text>
         </View>
     );
   }

@@ -7,6 +7,7 @@ import Spalsh from './Spalsh'
 import Login from './Login'
 import Register from './Register'
 import ForgotPasssword from './ForgotPassword'
+import Home from './Home'
 export default class App extends Component {
 
   constructor(props){
@@ -18,7 +19,7 @@ export default class App extends Component {
 
   render(props) {
     return (
-      <ForgotPasssword/>
+      <Home/>
     );
   }
 }
