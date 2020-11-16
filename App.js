@@ -16,7 +16,7 @@ export default class App extends Component {
 
   render(props) {
     return (
-      <Login/>
+      <Splash/>
     );
   }
 }
