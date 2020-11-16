@@ -6,6 +6,8 @@ import {
 import Spalsh from './Spalsh'
 import Login from './Login'
 import Register from './Register'
+import Home from './Home'
+import Song from './Song'
 import ForgotPasssword from './ForgotPassword'
 export default class App extends Component {
 
