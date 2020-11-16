@@ -84,7 +84,6 @@ const SongScreen =()=> {
     <Song navigation={navigation} />
   );
 }
-
 const Stack = createStackNavigator();
 const MyStack=()=>{
       return (
@@ -110,7 +109,6 @@ const MyStack=()=>{
         </Stack.Navigator>
       );
 }
-
 const BottomTab=createBottomTabNavigator();
 function MyBottomTab(){
   return(
@@ -131,15 +129,12 @@ function MyBottomTab(){
     <BottomTab.Screen 
       options={{tabBarIcon:({color})=>(<EvilIcons name="user" size={50} color={color} />),tabBarLabel:() => {return null}}} 
       name="Profile" component={ProfileScreen}/>
-      
     </BottomTab.Navigator>
   );
 }
-
 const TopTab = createMaterialTopTabNavigator();
 function MyTopTap(){
   return(
-<<<<<<< HEAD
     <TopTab.Navigator  tabBarOptions={{
       activeTintColor: 'black',
       indicatorStyle:{
@@ -147,44 +142,28 @@ function MyTopTap(){
         height:3
       },
       labelStyle: { fontSize: 16,fontWeight:"bold"},
-=======
-    <TopTab.Navigator  tabBarOptions={{activeTintColor:"black",
-    inactiveColor:"gray",
-    backgroundColor:'#black',
-    pressColor:'black',
->>>>>>> 4c958e4866fc348f47b9f6d90bbb9b7625f1f581
     style:{
       backgroundColor: 'white',
       position: 'absolute',
       top:"13%",
-<<<<<<< HEAD
       right:10,
       left:10,
       borderRadius:5,
-=======
-      right: 10,
-      left: 10,
-      borderRadius:25
->>>>>>> 4c958e4866fc348f47b9f6d90bbb9b7625f1f581
     }}}>
       <TopTab.Screen 
-      
       options={{title:"FEED"}} name="Home" component={HomeScreen}/>
       <TopTab.Screen options={{title:"FOOD"}} name="Food" component={FoodScreen}/>
       <TopTab.Screen options={{title:"MUSIC"}} name="Song" component={SongScreen}/>
     </TopTab.Navigator>
   );
 }
-
 export default class App extends Component {
-
   constructor(props){
     super(props);
      this.state = {
  
     };
   }
-
   render(props) {
     return (
       <NavigationContainer>
