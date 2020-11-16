@@ -121,7 +121,7 @@ export default class App extends Component {
   render(props) {
     return (
       <NavigationContainer>
-        <MyStack />
+        <MyStack/>
       </NavigationContainer>
     );
   }
