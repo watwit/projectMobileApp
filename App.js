@@ -21,6 +21,7 @@ import Profile from './Profile'
 import Food from './Food'
 
 import { AntDesign } from '@expo/vector-icons';
+import { EvilIcons } from '@expo/vector-icons';
 
 const SpalshScreen =()=> {
   const navigation = useNavigation();
@@ -113,16 +114,22 @@ const BottomTab=createBottomTabNavigator();
 function MyBottomTab(){
   return(
     <BottomTab.Navigator 
-      activeColor="white"
-      inactiveColor="gray">
+      tabBarOptions={{activeTintColor:"white",
+      inactiveColor:"gray",
+      backgroundColor:'#000000',
+      style:{
+        backgroundColor: '#000000'
+      }}}>
       <BottomTab.Screen 
-      options={{tabBarIcon:({color})=>(<AntDesign name="home" size={24} color={color} />)}} 
+      options={{tabBarIcon:({color})=>(<AntDesign name="home" size={40} color={color} />),tabBarLabel:() => {return null}}}
       name="TopTap" component={MyTopTap}/>
 
     <BottomTab.Screen 
+      options={{tabBarIcon:({color})=>(<AntDesign name="qrcode" size={40} color={color} />),tabBarLabel:() => {return null}}} 
       name="QrCode" component={QrCodeScreen}/>
       
     <BottomTab.Screen 
+      options={{tabBarIcon:({color})=>(<EvilIcons name="user" size={50} color={color} />),tabBarLabel:() => {return null}}} 
       name="Profile" component={ProfileScreen}/>
       
     </BottomTab.Navigator>
@@ -132,7 +139,7 @@ function MyBottomTab(){
 const TopTab = createMaterialTopTabNavigator();
 function MyTopTap(){
   return(
-    <TopTab.Navigator>
+    <TopTab.Navigator >
       <TopTab.Screen name="Home" component={HomeScreen}/>
       <TopTab.Screen name="Food" component={FoodScreen}/>
       <TopTab.Screen name="Song" component={SongScreen}/>
