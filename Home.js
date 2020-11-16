@@ -21,6 +21,7 @@ class Home extends Component {
   render(props) {
     const { navigation } = this.props;
     return (
+<<<<<<< HEAD
         <View style={{ flex: 1,backgroundColor:"#F1F1F1" ,paddingTop: Constants.statusBarHeight,}}>
             <View style={styles.header}>
               <View style={{flex:1,justifyContent:'center'}}>
@@ -42,6 +43,10 @@ class Home extends Component {
               
             </View>
             <Text style={{color:"white",justifyContent:'center',alignItems:'center'}}>Home</Text>
+=======
+        <View style={{ flex: 1,backgroundColor:"#000000",justifyContent:"center",alignItems:'center' }}>
+            <Text style={{color:"red"}}>Home</Text>
+>>>>>>> 857174b8a83af98e1aefcf59bc50b949ff062b8a
         </View>
     );
   }

@@ -11,16 +11,12 @@ class Splash extends Component {
  
     };
   }
-
-  
   componentDidMount() {
-        // setTimeout(() => {
-        //   this.props.navigation.navigate('Menu');
-        //   this.props.navigation.reset({index:0,routes:[{name:'Menu'}]})
-             
-        // }, 2500)
+        setTimeout(() => {
+          this.props.navigation.navigate('Login');
+          this.props.navigation.reset({index:0,routes:[{name:'Login'}]}) 
+        }, 2500)
     }
-
   render(props) {
     const { navigation } = this.props;
     return (

@@ -78,13 +78,15 @@ class Login extends Component {
                        
                     </TouchableOpacity>
                 </View>
-                <Text style={{color:"#009db1",marginTop:15}}>Forgot password?</Text>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('ForgotPassword')}>
+                    <Text style={{color:"#009db1",marginTop:15}}>Forgot password?</Text>
+                </TouchableOpacity>
                 <View style={styles.botton}>
-                    <TouchableOpacity style={styles.signin}>
+                    <TouchableOpacity style={styles.signin} onPress={()=>this.props.navigation.navigate('Bottomtab')} >
                         <Text style={styles.text_singIn}>SignIn</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.signUp,{marginTop:15}]}>
+                    <TouchableOpacity style={[styles.signUp,{marginTop:15}]} onPress={()=>this.props.navigation.navigate('Register')}>
                         <Text style={styles.text_singUp}>SignUp</Text>
                     </TouchableOpacity>
                 </View>
