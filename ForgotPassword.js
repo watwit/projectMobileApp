@@ -7,13 +7,11 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-class Login extends Component {
+class ForgotPassword extends Component {
   constructor(props){
     super(props);
      this.state = {
         check_textInputChange:false,
-        password:null,
-        secureTextEntry:true
     };
   }
   
@@ -25,19 +23,17 @@ class Login extends Component {
         this.setState({check_textInputChange:false})
     }
   }
-  secureTextEntry=()=>{
-      this.setState({secureTextEntry:!this.state.secureTextEntry})
-  }
 
   render(props) {
     const { navigation } = this.props;
     return (
         <View style={{ flex: 1,backgroundColor:"#000000" }}>
             <View style={styles.header}>
-                <Text style={styles.text_header}>Welcome To...</Text>
+                <Text style={styles.text_header}>Forgot Password?</Text>
             </View>
             <Animatable.View animation="fadeInUpBig" style={styles.footer}>
-                <Text style={styles.text_footer}>E-Mail</Text>
+                <Text style={styles.text_footer}>Enter your e-mail address we'll send you a link to reset  your password</Text>
+                <Text style={[styles.text_footer,{marginTop:30}]}>E-Mail</Text>
                 <View style={styles.action}>
                     <FontAwesome5 name="user-circle" size={20} color="black" />
                     <TextInput 
@@ -51,41 +47,9 @@ class Login extends Component {
                     </Animatable.View>
                     : null}
                 </View>
-
-                <Text style={[styles.text_footer,{marginTop:35}]}>Password</Text>
-                <View style={styles.action}>
-                    <AntDesign name="lock1" size={20} color="black" />
-                    {this.state.secureTextEntry 
-                    ? <TextInput 
-                        placeholder="Your Password"
-                        secureTextEntry={true}
-                        style={styles.text_input}
-                        value={this.state.password}
-                        onChangeText={(text)=>this.setState({password:text})}
-                      />
-                    : <TextInput 
-                        placeholder="Your Password"
-                        style={styles.text_input}
-                        value={this.state.password}
-                        onChangeText={(text)=>this.setState({password:text})}
-                     />
-                    }
-                    
-                    <TouchableOpacity onPress={()=>this.secureTextEntry()}>
-                        {this.state.secureTextEntry ?
-                         <Feather name="eye-off" size={20} color="gray" />
-                        : <Feather name="eye" size={20} color="gray" /> }
-                       
-                    </TouchableOpacity>
-                </View>
-                <Text style={{color:"#009db1",marginTop:15}}>Forgot password?</Text>
                 <View style={styles.botton}>
-                    <TouchableOpacity style={styles.signin}>
-                        <Text style={styles.text_singIn}>SignIn</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={[styles.signUp,{marginTop:15}]}>
-                        <Text style={styles.text_singUp}>SignUp</Text>
+                    <TouchableOpacity style={[styles.send,{marginTop:15}]}>
+                        <Text style={styles.text_send}>Send</Text>
                     </TouchableOpacity>
                 </View>
             </Animatable.View>
@@ -132,20 +96,7 @@ const styles = StyleSheet.create({
         alignItems:"center",
         marginTop:50,
     },
-    signin:{
-        width:"100%",
-        height:50,
-        backgroundColor:"#000000",
-        borderRadius:10,
-        justifyContent:"center",
-        alignItems:"center"
-    },
-    text_singIn:{
-        color:"white",
-        fontSize:18,
-        fontWeight:'bold'
-    },
-    signUp:{
+    send:{
         width:"100%",
         height:50,
         backgroundColor:"#C4C4C4",
@@ -155,7 +106,7 @@ const styles = StyleSheet.create({
         borderColor:"#000000",
         borderWidth:1
     },
-    text_singUp:{
+    text_send:{
         color:"black",
         fontSize:18,
         fontWeight:'bold'
@@ -163,4 +114,4 @@ const styles = StyleSheet.create({
   });
 
 
-export default Login;
+export default ForgotPassword;

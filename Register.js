@@ -7,13 +7,15 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-class Login extends Component {
+class Register extends Component {
   constructor(props){
     super(props);
      this.state = {
         check_textInputChange:false,
         password:null,
-        secureTextEntry:true
+        confirmPassword:null,
+        secureTextEntry:true,
+        secureTextEntryConfirm:true
     };
   }
   
@@ -28,13 +30,16 @@ class Login extends Component {
   secureTextEntry=()=>{
       this.setState({secureTextEntry:!this.state.secureTextEntry})
   }
+  secureTextEntryConfirm=()=>{
+    this.setState({secureTextEntryConfirm:!this.state.secureTextEntryConfirm})
+}
 
   render(props) {
     const { navigation } = this.props;
     return (
         <View style={{ flex: 1,backgroundColor:"#000000" }}>
             <View style={styles.header}>
-                <Text style={styles.text_header}>Welcome To...</Text>
+                <Text style={styles.text_header}>Create Account</Text>
             </View>
             <Animatable.View animation="fadeInUpBig" style={styles.footer}>
                 <Text style={styles.text_footer}>E-Mail</Text>
@@ -78,12 +83,33 @@ class Login extends Component {
                        
                     </TouchableOpacity>
                 </View>
-                <Text style={{color:"#009db1",marginTop:15}}>Forgot password?</Text>
-                <View style={styles.botton}>
-                    <TouchableOpacity style={styles.signin}>
-                        <Text style={styles.text_singIn}>SignIn</Text>
+                <Text style={[styles.text_footer,{marginTop:35}]}>Confirm Password</Text>
+                <View style={styles.action}>
+                    <AntDesign name="lock1" size={20} color="black" />
+                    {this.state.secureTextEntryConfirm 
+                    ? <TextInput 
+                        placeholder="Your Password"
+                        secureTextEntry={true}
+                        style={styles.text_input}
+                        value={this.state.confirmPassword}
+                        onChangeText={(text)=>this.setState({confirmPassword:text})}
+                      />
+                    : <TextInput 
+                        placeholder="Your Password"
+                        style={styles.text_input}
+                        value={this.state.confirmPassword}
+                        onChangeText={(text)=>this.setState({confirmPassword:text})}
+                     />
+                    }
+                    
+                    <TouchableOpacity onPress={()=>this.secureTextEntryConfirm()}>
+                        {this.state.secureTextEntryConfirm ?
+                         <Feather name="eye-off" size={20} color="gray" />
+                        : <Feather name="eye" size={20} color="gray" /> }
+                       
                     </TouchableOpacity>
-
+                </View>
+                <View style={styles.botton}>
                     <TouchableOpacity style={[styles.signUp,{marginTop:15}]}>
                         <Text style={styles.text_singUp}>SignUp</Text>
                     </TouchableOpacity>
@@ -132,19 +158,6 @@ const styles = StyleSheet.create({
         alignItems:"center",
         marginTop:50,
     },
-    signin:{
-        width:"100%",
-        height:50,
-        backgroundColor:"#000000",
-        borderRadius:10,
-        justifyContent:"center",
-        alignItems:"center"
-    },
-    text_singIn:{
-        color:"white",
-        fontSize:18,
-        fontWeight:'bold'
-    },
     signUp:{
         width:"100%",
         height:50,
@@ -163,4 +176,4 @@ const styles = StyleSheet.create({
   });
 
 
-export default Login;
+export default Register;
