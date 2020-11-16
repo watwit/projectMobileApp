@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import Spalsh from './Spalsh'
 import Login from './Login'
+import Splash from './Spalsh';
 export default class App extends Component {
 
   constructor(props){
@@ -16,7 +17,7 @@ export default class App extends Component {
 
   render(props) {
     return (
-      <Login/>
+      <Splash/>
     );
   }
 }
