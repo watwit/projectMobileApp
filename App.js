@@ -23,6 +23,7 @@ import Food from './Food'
 import { AntDesign } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
 
+
 const SpalshScreen =()=> {
   const navigation = useNavigation();
   return (
@@ -116,7 +117,6 @@ function MyBottomTab(){
     <BottomTab.Navigator 
       tabBarOptions={{activeTintColor:"white",
       inactiveColor:"gray",
-      backgroundColor:'#000000',
       style:{
         backgroundColor: '#000000'
       }}}>
@@ -139,20 +139,26 @@ function MyBottomTab(){
 const TopTab = createMaterialTopTabNavigator();
 function MyTopTap(){
   return(
-    <TopTab.Navigator  tabBarOptions={{activeTintColor:"white",
-    inactiveColor:"gray",
-    backgroundColor:'#000000',
+    <TopTab.Navigator  tabBarOptions={{
+      activeTintColor: 'black',
+      indicatorStyle:{
+        backgroundColor:"black",
+        height:3
+      },
+      labelStyle: { fontSize: 16,fontWeight:"bold"},
     style:{
-      backgroundColor: '#000000',
+      backgroundColor: 'white',
       position: 'absolute',
-      top:"15%",
-      right: 0,
-      left: 0,
-      borderRadius:20
+      top:"13%",
+      right:10,
+      left:10,
+      borderRadius:5,
     }}}>
-      <TopTab.Screen name="Home" component={HomeScreen}/>
-      <TopTab.Screen name="Food" component={FoodScreen}/>
-      <TopTab.Screen name="Song" component={SongScreen}/>
+      <TopTab.Screen 
+      
+      options={{title:"FEED"}} name="Home" component={HomeScreen}/>
+      <TopTab.Screen options={{title:"FOOD"}} name="Food" component={FoodScreen}/>
+      <TopTab.Screen options={{title:"MUSIC"}} name="Song" component={SongScreen}/>
     </TopTab.Navigator>
   );
 }
