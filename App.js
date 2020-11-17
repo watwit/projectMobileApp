@@ -23,7 +23,6 @@ import Profile from './Profile'
 import Food from './Food'
 import Chat from './Chat'
 import FriendList from './FriendList'
-
 import { AntDesign } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
 
@@ -110,6 +109,7 @@ const MyStack=()=>{
           headerTitleAlign:"left",
           headerStyle:{
             backgroundColor:'black',
+            paddingTop: Constants.statusBarHeight,
           }
         }}>
           <Stack.Screen name="Spalsh" 
