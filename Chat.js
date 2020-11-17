@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React, { Component } from 'react';
 import {
-  View,Text,StyleSheet,Image,FlatList,TouchableOpacity,
+  View,Text,StyleSheet,Image,FlatList,TouchableOpacity,TextInput
 } from 'react-native';
 
 class Chat extends Component {
@@ -35,6 +35,12 @@ class Chat extends Component {
           }
         }],
     };
+  }
+  renderHeader=()=>{
+    return(
+      <TextInput style={styles.inputHeader}></TextInput>
+    )
+    
   }
   renderSeparator = () => {
     return (
@@ -74,6 +80,7 @@ class Chat extends Component {
           renderItem={this.renderItem}
           keyExtractor={item => item.id}
           ItemSeparatorComponent={this.renderSeparator}
+          ListHeaderComponent={this.renderHeader}
         />
       </View>
     );
@@ -113,6 +120,12 @@ const styles = StyleSheet.create({
   time:{
     fontSize:16,
     color:'gray'
+  },
+  inputHeader:{
+    borderRadius:30,
+    backgroundColor:'#D3D3D3',
+    height:45,
+    margin:15
   }
   });
 
