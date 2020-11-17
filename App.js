@@ -22,6 +22,7 @@ import QrCode from './QrCode'
 import Profile from './Profile'
 import Food from './Food'
 import Chat from './Chat'
+import PageChat from './PageChat'
 import FriendList from './FriendList'
 import { AntDesign } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
@@ -101,6 +102,13 @@ const FriendListScreen =()=> {
   );
 }
 
+const PageChatScreen =()=> {
+  const navigation = useNavigation();
+  return (
+    <PageChat navigation={navigation} />
+  );
+}
+
 const Stack = createStackNavigator();
 const MyStack=()=>{
       return (
@@ -109,7 +117,6 @@ const MyStack=()=>{
           headerTitleAlign:"left",
           headerStyle:{
             backgroundColor:'black',
-            paddingTop: Constants.statusBarHeight,
           }
         }}>
           <Stack.Screen name="Spalsh" 
@@ -135,6 +142,10 @@ const MyStack=()=>{
           <Stack.Screen name="FriendList" 
             component={FriendListScreen} 
             options={{ headerShown: true}}/>
+
+          <Stack.Screen name="PageChat" 
+            component={PageChatScreen} 
+            options={{ headerShown: true}}/>
           
           <Stack.Screen 
           options={({ navigation }) => (
@@ -142,12 +153,12 @@ const MyStack=()=>{
                 title: "CPEขี้เมา",
                 headerRight: () => (
                   <View style={{flexDirection:'row',flex:1,justifyContent:'flex-end',alignItems:'center'}}>
-                  <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
+                  <TouchableOpacity onPress={() => navigation.navigate('FriendList')}>
                       <View style={{backgroundColor:'#565656',width:40,height:40,borderRadius:6,justifyContent:'center',alignItems:'center',marginRight:15}}>
                         <FontAwesome5 style={{margin:5}} name="user-friends" size={20} color="white" />
                       </View>
                       </TouchableOpacity>
-                      <TouchableOpacity onPress={()=>navigation.navigate('FriendList')}>
+                      <TouchableOpacity onPress={()=>navigation.navigate('Chat')}>
                       <View style={{backgroundColor:'#565656',width:40,height:40,borderRadius:6,justifyContent:'center',alignItems:'center',marginRight:10}}>
                           <Entypo style={{margin:5}} name="chat" size={24} color="white" />
                       </View>
