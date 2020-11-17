@@ -21,6 +21,8 @@ import ForgotPassword from './ForgotPassword'
 import QrCode from './QrCode'
 import Profile from './Profile'
 import Food from './Food'
+import Chat from './Chat'
+import FriendList from './FriendList'
 
 import { AntDesign } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
@@ -86,13 +88,28 @@ const SongScreen =()=> {
   );
 }
 
+const ChatScreen =()=> {
+  const navigation = useNavigation();
+  return (
+    <Chat navigation={navigation} />
+  );
+}
+
+const FriendListScreen =()=> {
+  const navigation = useNavigation();
+  return (
+    <FriendList navigation={navigation} />
+  );
+}
+
 const Stack = createStackNavigator();
 const MyStack=()=>{
       return (
         <Stack.Navigator screenOptions={{
-          headerTintColor:'blue',
+          headerTintColor:'white',
+          headerTitleAlign:"left",
           headerStyle:{
-            backgroundColor:'black'
+            backgroundColor:'black',
           }
         }}>
           <Stack.Screen name="Spalsh" 
@@ -110,24 +127,36 @@ const MyStack=()=>{
           <Stack.Screen name="ForgotPassword" 
             component={ForgotPasswordScreen} 
             options={{ headerShown: false}}/>
-          
-          <Stack.Screen options={{
-            title: "CPEขี้เมา",
 
-          headerRight: () => (
-            <View style={{flexDirection:'row',flex:1,justifyContent:'flex-end',alignItems:'center'}}>
-                <TouchableOpacity>
-                    <View style={{backgroundColor:'#565656',width:40,height:40,borderRadius:6,justifyContent:'center',alignItems:'center',marginRight:15}}>
-                      <FontAwesome5 style={{margin:5}} name="user-friends" size={20} color="white" />
-                    </View>
+          <Stack.Screen name="Chat" 
+            component={ChatScreen} 
+            options={{ headerShown: true}}/>
+
+          <Stack.Screen name="FriendList" 
+            component={FriendListScreen} 
+            options={{ headerShown: true}}/>
+          
+          <Stack.Screen 
+          options={({ navigation }) => (
+            { 
+                title: "CPEขี้เมา",
+                headerRight: () => (
+                  <View style={{flexDirection:'row',flex:1,justifyContent:'flex-end',alignItems:'center'}}>
+                  <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
+                      <View style={{backgroundColor:'#565656',width:40,height:40,borderRadius:6,justifyContent:'center',alignItems:'center',marginRight:15}}>
+                        <FontAwesome5 style={{margin:5}} name="user-friends" size={20} color="white" />
+                      </View>
+                      </TouchableOpacity>
+                      <TouchableOpacity onPress={()=>navigation.navigate('FriendList')}>
+                      <View style={{backgroundColor:'#565656',width:40,height:40,borderRadius:6,justifyContent:'center',alignItems:'center',marginRight:10}}>
+                          <Entypo style={{margin:5}} name="chat" size={24} color="white" />
+                      </View>
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                    <View style={{backgroundColor:'#565656',width:40,height:40,borderRadius:6,justifyContent:'center',alignItems:'center',marginRight:10}}>
-                        <Entypo style={{margin:5}} name="chat" size={24} color="white" />
-                    </View>
-                  </TouchableOpacity>
-            </View>
-          )}} name="Bottomtab" component={MyBottomTab}/>
+                 </View>
+                )
+            })} 
+          
+          name="Bottomtab" component={MyBottomTab}/>
 
         </Stack.Navigator>
       );
@@ -144,15 +173,15 @@ function MyBottomTab(){
         backgroundColor: '#000000'
       }}}>
       <BottomTab.Screen 
-      options={{tabBarIcon:({color})=>(<AntDesign name="home" size={40} color={color} />),tabBarLabel:() => {return null}}}
+      options={{tabBarIcon:({color})=>(<AntDesign name="home" size={28} color={color} />),tabBarLabel:() => {return null}}}
       name="TopTap" component={MyTopTap}/>
 
     <BottomTab.Screen 
-      options={{tabBarIcon:({color})=>(<AntDesign name="qrcode" size={40} color={color} />),tabBarLabel:() => {return null}}} 
+      options={{tabBarIcon:({color})=>(<AntDesign name="qrcode" size={28} color={color} />),tabBarLabel:() => {return null}}} 
       name="QrCode" component={QrCodeScreen}/>
       
     <BottomTab.Screen 
-      options={{tabBarIcon:({color})=>(<EvilIcons name="user" size={50} color={color} />),tabBarLabel:() => {return null}}} 
+      options={{tabBarIcon:({color})=>(<AntDesign name="profile" size={28} color={color} />),tabBarLabel:() => {return null}}} 
       name="Profile" component={ProfileScreen}/>
       
     </BottomTab.Navigator>
@@ -162,21 +191,29 @@ function MyBottomTab(){
 const TopTab = createMaterialTopTabNavigator();
 function MyTopTap(){
   return(
-    <TopTab.Navigator  tabBarOptions={{activeTintColor:"black",
-    //inactiveColor:"white",
-    backgroundColor:'#black',
-    pressColor:'black',
-    style:{
-      backgroundColor: 'white',
-      position: 'absolute',
-      top:"3%",
-      right: 10,
-      left: 10,
-      borderRadius:5
-    }}}>
-      <TopTab.Screen name="Home" component={HomeScreen}/>
-      <TopTab.Screen name="Food" component={FoodScreen}/>
-      <TopTab.Screen name="Song" component={SongScreen}/>
+    <TopTab.Navigator 
+    // sceneContainerStyle={{ backgroundColor: '#d1dfff', margin: 10, borderRadius: 20 }}
+    style={{ backgroundColor: '#F1F1F1' }}
+    tabBarOptions={{
+        activeTintColor: 'white',
+        inactiveTintColor: '#000000',
+        //showIcon: true,
+        //pressColor: 'gray',
+        scrollEnabled: false,
+        tabStyle: { borderRadius: 30,position:"relative",top:-7},
+        indicatorStyle: {
+          backgroundColor: '#000000',
+          height:34,
+          borderRadius: 30,
+          width: '33.33%'
+        },
+        style: { borderRadius: 30,marginTop:20,marginBottom:20,marginHorizontal:"5%", height: 34, width: '90%' },
+        labelStyle: { fontSize: 14 ,fontWeight:'bold'},
+
+    }}>
+      <TopTab.Screen options={{title:"หน้าฟีด"}} name="Home" component={HomeScreen}/>
+      <TopTab.Screen options={{title:"เมนูอาหาร"}} name="Food" component={FoodScreen}/>
+      <TopTab.Screen options={{title:"ขอคิวเพลง"}} name="Song" component={SongScreen}/>
     </TopTab.Navigator>
   );
 }
