@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import {
   View, Text, StyleSheet, Image, FlatList, TextInput, TouchableOpacity
 } from 'react-native';
@@ -42,6 +43,7 @@ class PageChat extends Component {
         <View style={{flexDirection:"row",justifyContent:"flex-end"}}>
           <View style={styles.Sender}>
               <Text style={styles.txtSender} >{item.content}</Text>
+              <Text style={styles.time}>{moment(item.createdAt).fromNow()}</Text>
           </View>
           
        </View>}
@@ -50,6 +52,7 @@ class PageChat extends Component {
         <View style={{flexDirection:"row",borderRadius:20}}>
           <View style={styles.Receiver}>
               <Text style={styles.txtReceiver}>{item.content}</Text>
+              <Text style={styles.time}>{moment(item.createdAt).fromNow()}</Text>
           </View>
        </View>}
       </View>
@@ -110,29 +113,24 @@ const styles = StyleSheet.create({
     backgroundColor:'black'
   },
   Receiver: {
-    flexWrap: 'wrap',
-    // borderTopRightRadius:20,
-    // borderTopLeftRadius:20,
-    // borderBottomRightRadius:20,
-    // borderWidth:1,
-    borderRadius: 20,
-    padding: 8,
-    flexShrink: 1,
-    //borderColor:"red",
+    flexWrap:'wrap',
+    borderTopRightRadius:20,
+    borderTopLeftRadius:20,
+    borderBottomRightRadius:20,
+    padding:8,
+    marginLeft:4,
+    flexShrink:1,
     backgroundColor: "#C0C0C0",
 
   },
   Sender: {
-    flexWrap: 'wrap',
-    // borderTopLeftRadius:20,
-    // borderTopRightRadius:20,
-    // borderBottomLeftRadius:20,
-    // borderWidth:1,
-    padding: 8,
-    flexShrink: 1,
-    borderRadius: 20,
-    //borderColor:"black",
-    backgroundColor: "#FFFFFF",
+    flexWrap:'wrap',
+    borderTopLeftRadius:20,
+    borderTopRightRadius:20,
+    borderBottomLeftRadius:20,
+    padding:8,
+    flexShrink:1,
+    backgroundColor: "#ffffff",
   },
   txtSender:{
     color:'black',
@@ -141,7 +139,11 @@ const styles = StyleSheet.create({
   txtReceiver:{
     color:'black',
     fontSize:18
-  }
+  },
+  time:{
+    alignSelf:'flex-end',
+    color:'gray'
+  },
 });
 
 
