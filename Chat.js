@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {
   View,Text,StyleSheet,Image,FlatList,TouchableOpacity,TextInput
 } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 class Chat extends Component {
   constructor(props){
@@ -19,6 +20,7 @@ class Chat extends Component {
             id: 'm1',
             content: 'hi!',
             createdAt: '2020-10-03T14:48:00.000Z',
+            sender:"1"
           }
         },
         {
@@ -32,13 +34,17 @@ class Chat extends Component {
             id: 'm1',
             content: 'hiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!!',
             createdAt: '2020-10-03T14:48:00.000Z',
+            sender:"2"
           }
         }],
     };
   }
-  renderHeader=()=>{
+  Header=()=>{
     return(
-      <TextInput style={styles.inputHeader}></TextInput>
+      <View style={styles.header}>
+        <FontAwesome name="search" size={24} color="gray" style={styles.icons}/>
+        <TextInput style={styles.inputHeader} placeholder="Search" ></TextInput>
+      </View>
     )
     
   }
@@ -55,7 +61,7 @@ class Chat extends Component {
   renderItem=({item})=>{
     return(
       <View>
-        <TouchableOpacity style={{backgroundColor:"#E5E5E5"}}  onPress={()=>this.props.navigation.navigate("PageChat")} >
+        <TouchableOpacity style={{backgroundColor:"#E5E5E5"}}  onPress={()=>this.props.navigation.navigate("PageChat",{roomID:item.id,username:item.users.name})} >
             <View style={styles.container}>
                 <View style={styles.lefContainer}>
                   <Image style={styles.profile} source={{uri:item.users.imageUri}}/>
@@ -74,13 +80,13 @@ class Chat extends Component {
     const { navigation } = this.props;
     return (
       <View style={{flex:1}}>
+        <this.Header/>
         <FlatList
           style={{width:"100%"}}
           data={this.state.user}
           renderItem={this.renderItem}
           keyExtractor={item => item.id}
           ItemSeparatorComponent={this.renderSeparator}
-          ListHeaderComponent={this.renderHeader}
         />
       </View>
     );
@@ -122,10 +128,22 @@ const styles = StyleSheet.create({
     color:'gray'
   },
   inputHeader:{
-    borderRadius:30,
-    backgroundColor:'#D3D3D3',
-    height:45,
-    margin:15
+    flex: 1,
+    fontSize:20
+  },
+  icons:{
+    padding: 2,
+    margin: 5,
+    alignItems: 'center',
+  },
+  header:{
+    flexDirection:'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height:50,
+    borderRadius: 20,
+    margin:15,
+    backgroundColor:'#E5E5E5'
   }
   });
 

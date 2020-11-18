@@ -90,8 +90,9 @@ const SongScreen =()=> {
 
 const ChatScreen =()=> {
   const navigation = useNavigation();
+  const route = useRoute();
   return (
-    <Chat navigation={navigation} />
+    <Chat navigation={navigation} route={route}/>
   );
 }
 
@@ -104,8 +105,9 @@ const FriendListScreen =()=> {
 
 const PageChatScreen =()=> {
   const navigation = useNavigation();
+  const route = useRoute();
   return (
-    <PageChat navigation={navigation} />
+    <PageChat navigation={navigation} route={route} />
   );
 }
 
@@ -114,7 +116,8 @@ const MyStack=()=>{
       return (
         <Stack.Navigator screenOptions={{
           headerTintColor:'white',
-          headerTitleAlign:"left",
+          headerTitleAlign:"center",
+          headerBackTitleVisible:false,
           headerStyle:{
             backgroundColor:'black',
           }
@@ -137,20 +140,27 @@ const MyStack=()=>{
 
           <Stack.Screen name="Chat" 
             component={ChatScreen} 
-            options={{ headerShown: true}}/>
+            options={{ 
+              headerShown: true,
+              title: "FRIEND"
+            }}
+            />
 
           <Stack.Screen name="FriendList" 
             component={FriendListScreen} 
-            options={{ headerShown: true}}/>
+            options={{ 
+              headerShown: true,
+              title: "MEMBER"
+            }}/>
 
           <Stack.Screen name="PageChat" 
             component={PageChatScreen} 
-            options={{ headerShown: true}}/>
+            options={({ route }) => ({ title: route.params.username ,headerShown: true,})}/>
           
           <Stack.Screen 
           options={({ navigation }) => (
             { 
-                title: "CPEขี้เมา",
+                title: "CPE ขี้เมา",
                 headerRight: () => (
                   <View style={{flexDirection:'row',flex:1,justifyContent:'flex-end',alignItems:'center'}}>
                   <TouchableOpacity onPress={() => navigation.navigate('FriendList')}>
