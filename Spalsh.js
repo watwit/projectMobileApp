@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import {
-  View,Text,StyleSheet,Image
+  View,Text,StyleSheet,Image,ActivityIndicator
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-
 class Splash extends Component {
   constructor(props){
     super(props);
@@ -11,7 +10,7 @@ class Splash extends Component {
  
     };
   }
-  componentDidMount() {
+   componentDidMount() {
         setTimeout(() => {
           this.props.navigation.navigate('Login');
           this.props.navigation.reset({index:0,routes:[{name:'Login'}]}) 
@@ -41,7 +40,7 @@ class Splash extends Component {
                         </View>
                     </Animatable.View>
                 </View>
-                <Text style={{color:"white", fontSize:32,position:'relative',top:"5%"}}>CPE ขี้เมา</Text>
+                 <Text style={{color:"white", fontSize:32,position:'relative',top:"5%",fontFamily:'sanam'}}>CPE ขี้เมา</Text>
             </View>
             <View style={styles.bottom}></View>
         </View>

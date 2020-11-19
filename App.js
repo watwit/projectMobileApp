@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import {
-  View,Text,TouchableOpacity
+  View,Text,TouchableOpacity,ActivityIndicator
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -26,7 +26,7 @@ import PageChat from './PageChat'
 import FriendList from './FriendList'
 import { AntDesign } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
-
+import * as Font from 'expo-font';
 const SpalshScreen =()=> {
   const navigation = useNavigation();
   return (
@@ -146,7 +146,7 @@ const MyStack=()=>{
             }}
             />
 
-          <Stack.Screen name="FriendList" 
+          <Stack.Screen name="FriendList"
             component={FriendListScreen} 
             options={{ 
               headerShown: true,
@@ -244,15 +244,28 @@ export default class App extends Component {
   constructor(props){
     super(props);
      this.state = {
- 
+      loadingFont:true
     };
+  }
+  async componentDidMount() {
+    await Font.loadAsync({
+         'sanam':require('./assets/fonts/SanamDeklen_chaya.ttf')
+     })
+     this.setState({loadingFont:false})
   }
 
   render(props) {
-    return (
-      <NavigationContainer>
-        <MyStack/>
-      </NavigationContainer>
-    );
+    const { loadingFont } = this.state
+
+    if (loadingFont) {
+      return <ActivityIndicator size="large"/>
+    }
+    else{
+      return (
+        <NavigationContainer>
+          <MyStack/>
+        </NavigationContainer>
+      );
+    } 
   }
 }
