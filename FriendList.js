@@ -15,6 +15,7 @@ class FriendList extends Component {
           id: 'u2',
           name: 'Watcharawit',
           imageUri: 'https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80',
+          caption:'โต๊ะ 8'
         },
         lastMessage: {
           id: 'm1',
@@ -29,6 +30,7 @@ class FriendList extends Component {
           id: 'u2',
           name: 'Watcharawit1',
           imageUri: 'https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80',
+          caption:'โต๊ะ 20'
         },
         lastMessage: {
           id: 'm1',
@@ -59,22 +61,21 @@ class FriendList extends Component {
   };
   renderItem = ({ item }) => {
     return (
-      <View>
-        <TouchableOpacity style={{ backgroundColor: "#E5E5E5" }}  >
+      <View style={{backgroundColor:'#E5E5E5'}}>
           <View style={styles.container}>
             <View style={styles.lefContainer}>
               <Image style={styles.profile} source={{ uri: item.users.imageUri }} />
               <View style={styles.midContainer}>
                 <Text style={styles.name}>{item.users.name}</Text>
-                {/* <Text style={styles.lastMessage} numberOfLines={1}>{item.lastMessage.content}</Text> */}
+                <Text style={styles.txtcaption} numberOfLines={1}>{item.users.caption}</Text>
               </View>
             </View>
-            <View style={styles.addFriend}>
-                <AntDesign name="adduser" size={26} color="black" />
-            </View>
-            {/* <Text style={styles.time}>{moment(item.lastMessage.createdAt).format("DD/MM/YYYY")}</Text> */}
+            <TouchableOpacity>
+              <View style={styles.addFriend}>
+                  <AntDesign name="adduser" size={26} color="black" />
+              </View>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
       </View>
     );
   }
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-  lastMessage: {
+  txtcaption: {
     fontSize: 16,
     color: 'gray',
     width: 100

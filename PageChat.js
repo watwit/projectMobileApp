@@ -13,12 +13,12 @@ class PageChat extends Component {
         id: '1',
         sender: "Watcharawit",
         content: 'หวัดดี ครับ A !!',
-        createdAt: '2020-11-18T17:15:00.000Z',
+        createdAt: '2020-11-19T08:00:00.000Z',
       }, {
         id: '2',
         sender: "B",
         content: 'หวัดดี ครับ B !!',
-        createdAt: '2020-11-18T17:15:00.000Z',
+        createdAt: '2020-11-19T08:05:00.000Z',
       }],
     };
     const { route } = this.props;
