@@ -76,10 +76,11 @@ const styles = StyleSheet.create({
     text_header:{
         color:"white",
         fontSize:30,
-        fontWeight:"bold"
+        fontFamily:'kanitSemiBold'
     },
     text_footer:{
-        fontSize:18
+        fontSize:18,
+        fontFamily:'kanitLight'
     },
     action:{
         flexDirection:"row",
@@ -90,7 +91,9 @@ const styles = StyleSheet.create({
     },
     text_input:{
         flex:1,
-        paddingLeft:10
+        paddingLeft:10,
+        fontSize:18,
+        fontFamily:'kanitLight'
     },
     botton:{
         alignItems:"center",
@@ -109,7 +112,7 @@ const styles = StyleSheet.create({
     text_send:{
         color:"black",
         fontSize:18,
-        fontWeight:'bold'
+        fontFamily:'kanitSemiBold'
     },
   });
 

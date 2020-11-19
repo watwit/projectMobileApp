@@ -96,7 +96,9 @@ const styles = StyleSheet.create({
     paddingStart: 20,
     backgroundColor:'#C4C4C4',
     borderRadius:30,
-    margin:5
+    margin:5,
+    fontFamily:'kanitLight',
+    fontSize:18
   },
   content: {
     flex: 1,
@@ -134,15 +136,18 @@ const styles = StyleSheet.create({
   },
   txtSender:{
     color:'black',
-    fontSize:18
+    fontSize:18,
+    fontFamily:'kanitLight'
   },
   txtReceiver:{
     color:'black',
-    fontSize:18
+    fontSize:18,
+    fontFamily:'kanitLight'
   },
   time:{
     alignSelf:'flex-end',
-    color:'gray'
+    color:'gray',
+    fontFamily:'kanitLight'
   },
 });
 

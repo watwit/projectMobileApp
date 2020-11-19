@@ -116,20 +116,23 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 18,	
-    fontWeight:"bold",
+    fontFamily:'kanitSemiBold'
     },
   lastMessage:{
     fontSize:16,
     color:'gray',
-    width:100
+    width:100,
+    fontFamily:'kanitLight'
   },
   time:{
     fontSize:16,
-    color:'gray'
+    color:'gray',
+    fontFamily:'kanitLight'
   },
   inputHeader:{
     flex: 1,
-    fontSize:20
+    fontSize:20,
+    fontFamily:'kanitLight'
   },
   icons:{
     padding: 2,
@@ -144,7 +147,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     margin:15,
     backgroundColor:'#E5E5E5'
-  }
+  },
   });
 
 

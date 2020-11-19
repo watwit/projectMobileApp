@@ -115,12 +115,13 @@ const Stack = createStackNavigator();
 const MyStack=()=>{
       return (
         <Stack.Navigator screenOptions={{
+          headerTitleStyle :{fontFamily:'kanitSemiBold'},
           headerTintColor:'white',
           headerTitleAlign:"center",
           headerBackTitleVisible:false,
           headerStyle:{
             backgroundColor:'black',
-          }
+          },
         }}>
           <Stack.Screen name="Spalsh" 
             component={SpalshScreen} 
@@ -221,7 +222,7 @@ function MyTopTap(){
         //showIcon: true,
         //pressColor: 'gray',
         scrollEnabled: false,
-        tabStyle: { borderRadius: 30,position:"relative",top:-7},
+        tabStyle: { borderRadius: 30,position:"relative",top:-9},
         indicatorStyle: {
           backgroundColor: '#000000',
           height:34,
@@ -229,7 +230,7 @@ function MyTopTap(){
           width: '33.33%'
         },
         style: { borderRadius: 30,marginTop:20,marginBottom:20,marginHorizontal:"5%", height: 34, width: '90%' },
-        labelStyle: { fontSize: 14 ,fontWeight:'bold'},
+        labelStyle: { fontSize: 16 ,fontFamily:'kanitSemiBold'},
 
     }}>
       <TopTab.Screen options={{title:"หน้าฟีด"}} name="Home" component={HomeScreen}/>
@@ -249,8 +250,25 @@ export default class App extends Component {
   }
   async componentDidMount() {
     await Font.loadAsync({
-         'sanam':require('./assets/fonts/SanamDeklen_chaya.ttf'),
-         'sriracha':require('./assets/fonts/Sriracha-Regular.ttf')
+          sriracha:require('./assets/fonts/Sriracha-Regular.ttf'),
+          kanitBlack: require('./assets/fonts/Kanit-Black.ttf'),
+          kanitBlackItalic: require('./assets/fonts/Kanit-BlackItalic.ttf'),
+          kanitBold: require('./assets/fonts/Kanit-Bold.ttf'),
+          kanitBoldItalic: require('./assets/fonts/Kanit-BoldItalic.ttf'),
+          kanitExtraBold: require('./assets/fonts/Kanit-ExtraBold.ttf'),
+          kanitExtraBoldItalic: require('./assets/fonts/Kanit-ExtraBoldItalic.ttf'),
+          kanitExtraLight: require('./assets/fonts/Kanit-ExtraLight.ttf'),
+          kanitExtraLightItalic: require('./assets/fonts/Kanit-ExtraLightItalic.ttf'),
+          kanitItalic: require('./assets/fonts/Kanit-Italic.ttf'),
+          kanitLight: require('./assets/fonts/Kanit-Light.ttf'),
+          kanitLightItalic: require('./assets/fonts/Kanit-LightItalic.ttf'),
+          kanitMedium: require('./assets/fonts/Kanit-Medium.ttf'),
+          kanitMediumItalic: require('./assets/fonts/Kanit-MediumItalic.ttf'),
+          kanitRegular: require('./assets/fonts/Kanit-Regular.ttf'),
+          kanitSemiBold: require('./assets/fonts/Kanit-SemiBold.ttf'),
+          kanitSemiBoldItalic: require('./assets/fonts/Kanit-SemiBoldItalic.ttf'),
+          kanitThin: require('./assets/fonts/Kanit-Thin.ttf'),
+          kanitThinItalic: require('./assets/fonts/Kanit-ThinItalic.ttf'),
      })
      this.setState({loadingFont:false})
   }

@@ -133,26 +133,29 @@ const styles = StyleSheet.create({
         borderTopLeftRadius:30,
         borderTopRightRadius:30,
         paddingHorizontal:20,
-        paddingVertical:30
+        paddingVertical:30,
     },
     text_header:{
         color:"white",
         fontSize:30,
-        fontWeight:"bold"
+        fontFamily:'kanitSemiBold'
     },
     text_footer:{
-        fontSize:18
+        fontSize:18,
+        fontFamily:'kanitLight'
     },
     action:{
         flexDirection:"row",
         marginTop:10,
         borderBottomWidth:1,
         borderColor:"#C4C4C4",
-        paddingBottom:5
+        paddingBottom:5,
     },
     text_input:{
         flex:1,
-        paddingLeft:10
+        paddingLeft:10,
+        fontSize:18,
+        fontFamily:'kanitLight'
     },
     botton:{
         alignItems:"center",
@@ -171,7 +174,7 @@ const styles = StyleSheet.create({
     text_singUp:{
         color:"black",
         fontSize:18,
-        fontWeight:'bold'
+        fontFamily:'kanitSemiBold'
     },
   });
 

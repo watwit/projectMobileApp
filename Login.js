@@ -79,7 +79,7 @@ class Login extends Component {
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('ForgotPassword')}>
-                    <Text style={{color:"#009db1",marginTop:15}}>Forgot password?</Text>
+                    <Text style={{color:"#009db1",marginTop:15,fontFamily:'kanitLight'}}>Forgot password?</Text>
                 </TouchableOpacity>
                 <View style={styles.botton}>
                     <TouchableOpacity style={styles.signin} onPress={()=>this.props.navigation.reset({index:0,routes:[{name:'Bottomtab'}]}) } >
@@ -114,21 +114,25 @@ const styles = StyleSheet.create({
     text_header:{
         color:"white",
         fontSize:30,
-        fontWeight:"bold"
+        fontFamily:'kanitSemiBold'
     },
     text_footer:{
-        fontSize:18
+        fontSize:18,
+        fontFamily:'kanitLight'
     },
     action:{
         flexDirection:"row",
         marginTop:10,
         borderBottomWidth:1,
         borderColor:"#C4C4C4",
-        paddingBottom:5
+        paddingBottom:5,
+        fontFamily:'kanitLight'
     },
     text_input:{
         flex:1,
-        paddingLeft:10
+        paddingLeft:10,
+        fontSize:18,
+        fontFamily:'kanitLight'
     },
     botton:{
         alignItems:"center",
@@ -145,7 +149,7 @@ const styles = StyleSheet.create({
     text_singIn:{
         color:"white",
         fontSize:18,
-        fontWeight:'bold'
+        fontFamily:'kanitSemiBold'
     },
     signUp:{
         width:"100%",
@@ -160,7 +164,7 @@ const styles = StyleSheet.create({
     text_singUp:{
         color:"black",
         fontSize:18,
-        fontWeight:'bold'
+        fontFamily:'kanitSemiBold'
     },
   });
 

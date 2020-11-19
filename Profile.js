@@ -43,12 +43,12 @@ class Profile extends Component {
         <View style={styles.footer}>
           <View style={styles.editProfile}>
             <AntDesign name="setting" size={24} color="black" />
-            <Text style={{fontSize:16}}> ตั้งค่าโปรไฟล์</Text>
+            <Text style={{fontSize:16,fontFamily:'kanitLight'}}> ตั้งค่าโปรไฟล์</Text>
           </View>
 
           <View style={styles.logOut}>
             <Ionicons name="ios-log-out" size={24} color="white" />
-            <Text style={{fontSize:16,color:'white'}}> ออกจากร้าน</Text>
+            <Text style={{fontSize:16,color:'white',fontFamily:'kanitLight'}}> ออกจากร้าน</Text>
           </View>
 
         </View>
@@ -90,10 +90,11 @@ const styles = StyleSheet.create({
   },
   name:{
     fontSize:24,
-    fontWeight:"bold"
+    fontFamily:'kanitSemiBold'
   },
   txtDescription:{
-    fontSize:18
+    fontSize:18,
+    fontFamily:'kanitRegular'
   },
   editProfile:{
     backgroundColor:'white',

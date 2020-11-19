@@ -120,12 +120,13 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily:'kanitSemiBold',
   },
   txtcaption: {
     fontSize: 16,
     color: 'gray',
-    width: 100
+    width: 100,
+    fontFamily:'kanitLight',
   },
   time: {
     fontSize: 16,
@@ -133,6 +134,7 @@ const styles = StyleSheet.create({
   },
   txtHeader: {
     fontSize: 20,
+    fontFamily:'kanitRegular'
   },
   header: {
     flexDirection: 'row',
