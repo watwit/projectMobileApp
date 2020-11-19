@@ -249,7 +249,8 @@ export default class App extends Component {
   }
   async componentDidMount() {
     await Font.loadAsync({
-         'sanam':require('./assets/fonts/SanamDeklen_chaya.ttf')
+         'sanam':require('./assets/fonts/SanamDeklen_chaya.ttf'),
+         'sriracha':require('./assets/fonts/Sriracha-Regular.ttf')
      })
      this.setState({loadingFont:false})
   }

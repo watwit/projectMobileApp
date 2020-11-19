@@ -40,7 +40,7 @@ class Splash extends Component {
                         </View>
                     </Animatable.View>
                 </View>
-                 <Text style={{color:"white", fontSize:32,position:'relative',top:"5%",fontFamily:'sanam'}}>CPE ขี้เมา</Text>
+                 <Text style={{color:"white", fontSize:40,position:'relative',top:"5%",fontFamily:'sriracha'}}>CPE ขี้เมา</Text>
             </View>
             <View style={styles.bottom}></View>
         </View>
