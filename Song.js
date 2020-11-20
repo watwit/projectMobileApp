@@ -16,15 +16,19 @@ class Song extends Component {
   renderItem=({item})=>{
     return(
       <View>
-      <View style={{backgroundColor:'white',height:100,width:'90%',borderWidth:1,borderRadius:10,marginRight:20,flexDirection:'row',marginBottom:15}}>
-            <View style={{backgroundColor:'#E2E2E2',height:'80%',width:'23%',borderRadius:10,margin:10,justifyContent:'center',alignItems:'center'}}>
-                <Image source={{uri:'https://image.flaticon.com/icons/png/512/126/126493.png'}} style={{height:'55%',width:'50%'}}></Image>
+      <View style={{backgroundColor:'white',height:100,width:'95%',borderWidth:1,borderRadius:10,marginRight:20,flexDirection:'row',marginBottom:15}}>
+            <View style={{height:'80%',width:'15%',borderRadius:10,margin:10,justifyContent:'center',alignItems:'center',flexDirection:'row'}}>
+                <Text style={{color:'black',marginLeft:10,fontSize:20,fontFamily:'kanitSemiBold'}}>{item.id}</Text>
+                <View style={{width:1,height:'80%',backgroundColor:'black',marginTop:10,marginLeft:20}}></View>
             </View>
-            <View style={{width:1,height:'80%',backgroundColor:'white',marginTop:10}}></View>
+            <View style={{backgroundColor:'#E2E2E2',height:'80%',width:'18%',borderRadius:10,margin:10,marginLeft:1,justifyContent:'center',alignItems:'center'}}>
+                <Image source={{uri:'https://image.flaticon.com/icons/png/512/126/126493.png'}} style={{height:'55%',width:'60%'}}></Image>
+            </View>
+            <View style={{width:1,height:'80%',backgroundColor:'white',marginTop:10,marginRight:1}}></View>
             <View style={{marginTop:5,marginBottom:5}}>
-    <Text style={{color:'black',marginLeft:10,fontSize:20,fontFamily:'kanitSemiBold'}}>{item.name}</Text>
+                <Text style={{color:'black',marginLeft:10,fontSize:20,fontFamily:'kanitSemiBold'}}>{item.name}</Text>
                 <Text style={{color:'#8B8B8B',marginLeft:10,marginTop:5,fontSize:15,fontFamily:'kanitSemiBold'}}>{item.singer}</Text>
-                <Text style={{color:'#8B8B8B',marginLeft:10,marginTop:5,fontSize:15,fontFamily:'kanitSemiBold'}}>{item.table}</Text>
+                <Text style={{color:'#8B8B8B',marginLeft:10,marginTop:5,fontSize:15,fontFamily:'kanitSemiBold'}}>{"ให้โต๊ะ "+item.table}</Text>
             </View>
         </View>
       </View>
@@ -62,32 +66,32 @@ class Song extends Component {
                 <Text style={{color:'white',fontSize:40}}>&#43;</Text>
               </View>
               <Modal transparent={true} visible={this.state.showModal} animationType="slide">
-            <View  style={{backgroundColor:'#00000070',flex:2}}>
-                <View style={{backgroundColor:'white',marginTop:150,marginBottom:200,marginLeft:30,marginRight:30,borderRadius:10,flex:3}}>
-                    <View style={{height:'10%',width:'100%',borderRadius:10,justifyContent:'center',alignItems:'center',flex:2}}>
-                    <View style={{marginTop:80,backgroundColor:'#E2E2E2',height:'70%',width:'20%',borderRadius:10,justifyContent:'center',alignItems:'center'}}>
-                        <Image source={{uri:'https://image.flaticon.com/icons/png/512/126/126493.png'}} style={{height:'55%',width:'50%'}}></Image>
+            <View  style={{backgroundColor:'#00000070',height:850}}>
+                <View style={{backgroundColor:'white',marginTop:200,marginBottom:250,marginLeft:30,marginRight:30,borderRadius:10,flex:3}}>
+                    <View style={{height:100,width:'100%',borderRadius:10,justifyContent:'center',alignItems:'center',flex:2}}>
+                    <View style={{marginTop:100,backgroundColor:'#E2E2E2',height:'90%',width:'20%',borderRadius:10,justifyContent:'center',alignItems:'center'}}>
+                        <Image source={{uri:'https://image.flaticon.com/icons/png/512/126/126493.png'}} style={{height:'55%',width:'60%'}}></Image>
                     </View>
                     <View style={{marginTop:10,marginBottom:30}}>
                       <Text style={{fontSize:20,fontFamily:'kanitSemiBold'}}>ขอคิวเพลง</Text>
                     </View>
                         
                     </View>
-                    <View style={{height:1,backgroundColor:'#656565',marginTop:50}}></View> 
-                    <View style={{flex:5,justifyContent:'space-around',padding:10}}>
+                    <View style={{height:1,backgroundColor:'#65656590',marginTop:60,marginLeft:15,marginRight:15}}></View> 
+                    <View style={{flex:3,justifyContent:'space-around',padding:10}}>
                         <View style={{height:'30%',borderRadius:35,borderWidth:1,justifyContent:'center',alignItems:'center'}} >
-                            <TextInput placeholder='ชื่อเพลง' style={{width:'80%'}}></TextInput>
+                            <TextInput placeholder='ป้อนชื่อเพลง' style={{width:'80%',fontFamily:'kanitSemiBold'}}></TextInput>
                         </View>
                         <View style={{height:'30%',borderRadius:35,borderWidth:1,justifyContent:'center',alignItems:'center'}} >
-                          <TextInput placeholder='ศิลปิน' style={{width:'80%'}}></TextInput>
+                          <TextInput placeholder='ศิลปิน' style={{width:'80%',fontFamily:'kanitSemiBold'}}></TextInput>
                         </View>
                         <View style={{height:'30%',borderRadius:35,borderWidth:1,justifyContent:'center',alignItems:'center'}} >
-                            <TextInput placeholder='เพิ่มเติม' style={{width:'80%'}}></TextInput>
+                            <TextInput placeholder='รายละเอียดเพิ่มเติม' style={{width:'80%',fontFamily:'kanitSemiBold'}}></TextInput>
                         </View>
                     </View>
 
                     {/* //////////////////////////////////////////////////////// */}
-                    <View style={{height:1,backgroundColor:'#656565'}}></View> 
+                    <View style={{height:1,backgroundColor:'#65656590',marginLeft:15,marginRight:15}}></View> 
                     <View style={{flex:2,justifyContent:'center',flexDirection:'row'}}>
                     <TouchableOpacity onPress={()=>{this.setState({showModal:false})}}>
                     <View style={{alignItems:'center',justifyContent:'center',marginRight:80,height:'100%'}}>
