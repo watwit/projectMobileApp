@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StyleSheet, Image, TouchableOpacity,Modal
+  View, Text, StyleSheet, Image, TouchableOpacity, Modal
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-<<<<<<< HEAD
 import { TextInput } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
 import firestore from './firebase/Firestore'
-=======
->>>>>>> 563969199a005d2a582b6c5b18dab29963e7d834
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -47,20 +44,84 @@ class Profile extends Component {
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>Hello World!</Text>
-
-              <TouchableOpacity
-                style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-                onPress={() => {
-                  this.setModalVisible(!modalVisible);
-                }}
-              >
-                <Text style={styles.textStyle}>Hide Modal</Text>
+              <TouchableOpacity>
+                <View style={styles.profile}>
+                  <Image style={styles.image} source={{ uri: 'https://scontent.fbkk11-1.fna.fbcdn.net/v/t1.0-9/106120566_3049250375195115_1160308528193104189_o.jpg?_nc_cat=110&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeFfLRFY8nsWPzaRCcMLitqYCLpinoXybFQIumKehfJsVP2YpNPfwK62kJ6zo5ChZO3UhLo3G1QN7X602rBhM-Fk&_nc_ohc=dYI0SFIF-0QAX_kTRXm&_nc_ht=scontent.fbkk11-1.fna&oh=8bc5e46e29c8296473275a62356c2aa2&oe=5FD824A1' }} />
+                </View>
               </TouchableOpacity>
+              <View style={{ height: 2, backgroundColor: 'gray', width: 300, margin: 20 }}></View>
+              <View style={styles.modalMid}>
+                <View style={styles.modalMidLeft}>
+                  <Feather name="user" size={24} color="black" />
+                </View>
+                <View style={styles.modalMidRight}>
+                  <TextInput style={styles.textInput} value="Itthikorn wisetpong"></TextInput>
+                </View>
+              </View>
+
+              <View style={styles.modalMid}>
+                <View style={styles.modalMidLeft}>
+                  <MaterialIcons name="description" size={28} color="black" />
+                </View>
+                <View style={styles.modalMidRight}>
+                  <TextInput style={styles.textInput} value="โต๊ะ 18"></TextInput>
+                </View>
+              </View>
+
+              <View style={styles.modalMid}>
+                <View style={styles.modalMidLeft}>
+                  <AntDesign name="facebook-square" size={24} color="black" />
+                </View>
+                <View style={styles.modalMidRight}>
+                  <TextInput style={styles.textInput} value="Itthikorn wisetpong"></TextInput>
+                </View>
+              </View>
+
+              <View style={styles.modalMid}>
+                <View style={styles.modalMidLeft}>
+                  <AntDesign name="instagram" size={24} color="black" />
+                </View>
+                <View style={styles.modalMidRight}>
+                  <TextInput style={styles.textInput} value="gg.gorigoe"></TextInput>
+                </View>
+              </View>
+
+              <View style={styles.modalMid}>
+                <View style={styles.modalMidLeft}>
+                  <FontAwesome5 name="line" size={24} color="black" />
+                </View>
+                <View style={styles.modalMidRight}>
+                  <TextInput style={styles.textInput} value="zicooley"></TextInput>
+                </View>
+              </View>
+              <View style={{ height: 2, backgroundColor: 'gray', width:300, margin: 20 }}></View>
+
+              <View style={styles.modalFooter}>
+                <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.setModalVisible(!modalVisible);
+                    }}
+                  >
+                    <Text style={{fontSize:18,fontFamily:'kanitRegular'}}>ยกเลิก</Text>
+                  </TouchableOpacity>
+                </View>
+                
+                <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.setModalVisible(!modalVisible);
+                    }}
+                  >
+                    <Text style={{fontSize:18,fontFamily:'kanitRegular',color:'#6F0CEE'}}>ยืนยัน</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
             </View>
           </View>
         </Modal>
 
+        {/*================ close modal ==================*/}
 
         <View style={styles.header}>
           <View style={styles.profile}>
@@ -85,28 +146,19 @@ class Profile extends Component {
           </View>
         </View>
         <View style={styles.footer}>
-          <TouchableOpacity onPress={() => { this.setModalVisible(true); }}>
-            <View style={styles.editProfile}>
-              <AntDesign name="setting" size={24} color="black" />
-              <Text style={{ fontSize: 16, fontFamily: 'kanitLight' }}> ตั้งค่าโปรไฟล์</Text>
-            </View>
-          </TouchableOpacity>
+        <TouchableOpacity onPress={() => { this.setModalVisible(true); }}>
+          <View style={styles.editProfile}>
+            <AntDesign name="setting" size={24} color="black" />
+            <Text style={{ fontSize: 16, fontFamily: 'kanitLight' }}> ตั้งค่าโปรไฟล์</Text>
+          </View>
+        </TouchableOpacity>
 
-<<<<<<< HEAD
         <TouchableOpacity onPress={this.onLogout}>
           <View style={styles.logOut}>
             <Ionicons name="ios-log-out" size={24} color="white" />
             <Text style={{ fontSize: 16, color: 'white', fontFamily: 'kanitLight' }}> ออกจากระบบ</Text>
           </View>
         </TouchableOpacity>
-=======
-          <TouchableOpacity>
-            <View style={styles.logOut}>
-              <Ionicons name="ios-log-out" size={24} color="white" />
-              <Text style={{ fontSize: 16, color: 'white', fontFamily: 'kanitLight' }}> ออกจากร้าน</Text>
-            </View>
-          </TouchableOpacity>
->>>>>>> 563969199a005d2a582b6c5b18dab29963e7d834
         </View>
 
       </View>
@@ -179,11 +231,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
-    backgroundColor:'red'
+    marginTop: 10
   },
   modalView: {
-    margin: 20,
+    margin: 10,
     backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
@@ -195,22 +246,33 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
+    elevation: 5,
+    width:350,
+    height:570
   },
-  openButton: {
-    backgroundColor: "#F194FF",
+  modalMid:{
+    flexDirection:'row'
+  },
+  modalMidLeft:{
+    width:"10%",
+    justifyContent:'center'
+  },
+  modalMidRight:{
+    width:"90%",
+    height: 40,
     borderRadius: 20,
-    padding: 10,
-    elevation: 2
+    backgroundColor: '#E5E5E5',
+    margin:5
   },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center"
+  textInput:{
+    flex: 1,
+    fontSize: 16,
+    fontFamily: 'kanitLight',
+    textAlign: 'center'
   },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center"
+  modalFooter:{
+    flexDirection:'row',
+    justifyContent:'space-evenly'
   }
 
 });
