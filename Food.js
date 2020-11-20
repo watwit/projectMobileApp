@@ -52,8 +52,8 @@ class Food extends Component {
             <Text style={{marginLeft:60,fontSize:20}}>{item.name}</Text>
             <Text style={{marginRight:10,marginLeft:30,fontSize:20}}>{item.price+" บาท"}</Text>
           </View>
-          <Modal transparent={true} visible={this.state.showModal}>
-            <View style={{backgroundColor:'#000000aa',flex:1}}>
+          <Modal transparent={true} visible={this.state.showModal} animationType="slide">
+            <View  style={{backgroundColor:'#00000060',flex:1}}>
                 <View style={{backgroundColor:'white',marginTop:100,marginBottom:200,marginLeft:20,marginRight:20,borderRadius:10,flex:1}}>
                     <View style={{height:'10%',width:'100%',borderRadius:10,justifyContent:'center',alignItems:'center',flex:2}}>
                         <Text style={{fontSize:20,fontWeight:'bold'}}>การสั่งซื้อ</Text>
