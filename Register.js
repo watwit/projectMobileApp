@@ -7,21 +7,69 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import firestore from './firebase/Firestore'
 class Register extends Component {
   constructor(props){
     super(props);
      this.state = {
         check_textInputChange:false,
+        check_textInputChangeName:false,
         password:null,
         confirmPassword:null,
         secureTextEntry:true,
-        secureTextEntryConfirm:true
+        secureTextEntryConfirm:true,
+        email:null,
+        name:null,
     };
+  }
+  success=(docRef)=>{
+    Alert.alert(
+        "Success",
+        "Add Your Account Success",
+        [
+          { text: "OK", onPress: () => this.props.navigation.navigate("Login") }
+        ],
+        { cancelable: false }
+      );
+  }
+  reject=(error)=>{
+      console.log(error)
+  }
+  onRegisterAut=()=>{
+    console.log("onRegisterAut")
+    firestore.createUser(this.state.email,this.state.password,this.unsuccess);
+  }
+  addUser=async()=>{
+    console.log("addUser")
+    var User={
+            email:this.state.email,
+            password:this.state.password,
+            name:this.state.name,
+            fb:"-",
+            ig:"-",
+            line:"-",
+            caption:"-",
+            avatar:"-",
+            type:"User",
+            status:"0"
+          }
+    await firestore.addUser(User,this.success,this.reject);
   }
   
   textInputChange=(value)=>{
     if(value.length!==0){
-        this.setState({check_textInputChange:true})
+        this.setState({check_textInputChange:true}),
+        this.setState({email:value})
+    }
+    else{
+        this.setState({check_textInputChange:false})
+    }
+  }
+
+  textInputChangeName=(value)=>{
+    if(value.length!==0){
+        this.setState({check_textInputChangeName:true}),
+        this.setState({name:value})
     }
     else{
         this.setState({check_textInputChange:false})
@@ -42,7 +90,22 @@ class Register extends Component {
                 <Text style={styles.text_header}>Create Account</Text>
             </View>
             <Animatable.View animation="fadeInUpBig" style={styles.footer}>
-                <Text style={styles.text_footer}>E-Mail</Text>
+
+                <Text style={styles.text_footer}>Name</Text>
+                <View style={styles.action}>
+                    <FontAwesome5 name="user-circle" size={20} color="black" />
+                    <TextInput 
+                        placeholder="Your Name"
+                        style={styles.text_input}
+                        onChangeText={(text)=>this.textInputChangeName(text)}
+                    />
+                    {this.state.check_textInputChangeName ?
+                    <Animatable.View animation="bounceIn">
+                        <Ionicons name="md-checkmark-circle-outline" size={20} color="red" /> 
+                    </Animatable.View>
+                    : null}
+                </View>
+                <Text style={[styles.text_footer,{marginTop:15}]}>E-Mail</Text>
                 <View style={styles.action}>
                     <FontAwesome5 name="user-circle" size={20} color="black" />
                     <TextInput 
@@ -57,7 +120,7 @@ class Register extends Component {
                     : null}
                 </View>
 
-                <Text style={[styles.text_footer,{marginTop:35}]}>Password</Text>
+                <Text style={[styles.text_footer,{marginTop:15}]}>Password</Text>
                 <View style={styles.action}>
                     <AntDesign name="lock1" size={20} color="black" />
                     {this.state.secureTextEntry 
@@ -83,7 +146,7 @@ class Register extends Component {
                        
                     </TouchableOpacity>
                 </View>
-                <Text style={[styles.text_footer,{marginTop:35}]}>Confirm Password</Text>
+                <Text style={[styles.text_footer,{marginTop:15}]}>Confirm Password</Text>
                 <View style={styles.action}>
                     <AntDesign name="lock1" size={20} color="black" />
                     {this.state.secureTextEntryConfirm 
@@ -110,7 +173,7 @@ class Register extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.botton}>
-                    <TouchableOpacity style={[styles.signUp,{marginTop:15}]}>
+                    <TouchableOpacity style={[styles.signUp,{marginTop:15}]} onPress={this.onRegisterAut}>
                         <Text style={styles.text_singUp}>SignUp</Text>
                     </TouchableOpacity>
                 </View>
