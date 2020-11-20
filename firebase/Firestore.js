@@ -18,34 +18,50 @@ class Firestore{
     else{
       console.log('firebase app already running...')
     }
-    this.auth = firebase.auth();
   }
-  addUser=(User,success,reject)=>{
-    User.createdDate=firebase.firestore.FieldValue.serverTimestamp();
-    firebase.firestore().collection('User').add(User)
-    .then(function (docRef) {
-      success(docRef);
-      })
-    .catch(function (error) {
+  // addUser=(User,success,reject)=>{
+  //   User.createdDate=firebase.firestore.FieldValue.serverTimestamp();
+  //   firebase.firestore().collection('User').add(User)
+  //   .then(function (docRef) {
+  //     success(docRef);
+  //     })
+  //   .catch(function (error) {
+  //     reject(error);
+  //   });
+  // }
+  signIn=(email,password,reject)=>{
+    firebase.auth().signInWithEmailAndPassword(email,password).catch(function(error){
       reject(error);
     });
   }
-  getCurrentUser=()=>{
-    this.auth.onAuthStateChanged(function(user){
-      if(user){
-        console.log(user)
-      }
-      else{
-        console.log("no user")
-      }
+  signOut=(success,reject)=>{
+    firebase.auth().signOut()
+    .then(function(){
+      success(null);
+    })
+    .catch(function(error){
+      reject(error);
     });
   }
-
-  createUser=(email,password,unsuccess)=>{
-    this.auth.createUserWithEmailAndPassword(email,password)
+  listeningCurrentUser=(getSuccess)=>{
+    firebase.auth().onAuthStateChanged(function(user){
+      getSuccess(user);
+      });  
+  }
+  createUser=(email,password,reject)=>{
+    firebase.auth().createUserWithEmailAndPassword(email,password)
+    .catch(function(error){
+      reject(error);
+    });
+  }
+  recoverAccount=(email,success,unsuccess)=>{
+    this.auth.sendPasswordResetEmail(email)
+    .then(function(){
+      success(null);
+    })
     .catch(function(error){
       unsuccess(error);
-    })
+    });
   }
   
 }

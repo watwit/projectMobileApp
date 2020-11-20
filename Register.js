@@ -22,6 +22,12 @@ class Register extends Component {
         name:null,
     };
   }
+  componentDidMount=()=>{
+    firestore.listeningCurrentUser(this.listeningCurrentUser);
+  }
+  listeningCurrentUser=(user)=>{
+      console.log(user.uid)
+  }
   success=(docRef)=>{
     Alert.alert(
         "Success",

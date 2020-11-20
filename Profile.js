@@ -8,12 +8,22 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
+import firestore from './firebase/Firestore'
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modalVisible: false
     };
+  }
+  onSignOutSuccess=()=>{
+    console.log('Sign Out Success');
+  }
+  unsuccess=(error)=>{
+    console.log(error)
+  }
+  onLogout=()=>{
+    firestore.signOut(this.onSignOutSuccess,this.onReject);
   }
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
@@ -143,10 +153,10 @@ class Profile extends Component {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={this.onLogout}>
           <View style={styles.logOut}>
             <Ionicons name="ios-log-out" size={24} color="white" />
-            <Text style={{ fontSize: 16, color: 'white', fontFamily: 'kanitLight' }}> ออกจากร้าน</Text>
+            <Text style={{ fontSize: 16, color: 'white', fontFamily: 'kanitLight' }}> ออกจากระบบ</Text>
           </View>
         </TouchableOpacity>
         </View>
