@@ -91,7 +91,7 @@ class FriendList extends Component {
     const { navigation } = this.props;
     const { modalVisible } = this.state;
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1}}>
         <this.Header />
         <Modal
           animationType="slide"
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22
+    marginTop: 22,
   },
   modalView: {
     margin: 20,
@@ -247,7 +247,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
+    elevation: 5,
+    width:350,
+    height:550
   },
   openButton: {
     backgroundColor: "#F194FF",

@@ -236,7 +236,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
+    elevation: 5,
+    width:350,
+    height:570
   },
   modalMid:{
     flexDirection:'row'
