@@ -3,6 +3,7 @@ import {
   View,Text,StyleSheet,Image,ActivityIndicator
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import firestore from './firebase/Firestore'
 class Splash extends Component {
   constructor(props){
     super(props);
@@ -10,11 +11,24 @@ class Splash extends Component {
  
     };
   }
-   componentDidMount() {
+
+
+  listeningCurrentUserSuccess=(user)=>{
+    console.log("splash")
+
+    if(!user){
         setTimeout(() => {
-          this.props.navigation.navigate('Login');
-          this.props.navigation.reset({index:0,routes:[{name:'Login'}]}) 
+            this.props.navigation.navigate('Login');
+            this.props.navigation.reset({index:0,routes:[{name:'Login'}]}) 
         }, 2500)
+    }
+    else{
+        this.props.navigation.navigate('Bottomtab');
+        this.props.navigation.reset({index:0,routes:[{name:'Bottomtab'}]}) 
+    }
+  }
+   componentDidMount() {
+    this.authListener=this.authFirebaseListener=firestore.listeningCurrentUser(this.listeningCurrentUserSuccess);
     }
   render(props) {
     const { navigation } = this.props;

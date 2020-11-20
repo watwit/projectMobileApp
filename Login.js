@@ -7,27 +7,36 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import firestore from './firebase/Firestore'
 class Login extends Component {
-  constructor(props){
-    super(props);
-     this.state = {
-        check_textInputChange:false,
-        password:null,
-        secureTextEntry:true
-    };
-  }
+    constructor(props){
+        super(props);
+        this.state = {
+            check_textInputChange:false,
+            email:null,
+            password:null,
+            secureTextEntry:true
+        };
+    }
+    onLoginFail=(error)=>{
+        console.log("onLoginFail");
+    }
+    onLogin=()=>{
+        firestore.signIn(this.state.email,this.state.password,this.onLoginFail);
+    }
   
-  textInputChange=(value)=>{
-    if(value.length!==0){
-        this.setState({check_textInputChange:true})
+    textInputChange=(value)=>{
+        if(value.length!==0){
+            this.setState({check_textInputChange:true})
+            this.setState({email:value})
+        }
+        else{
+            this.setState({check_textInputChange:false})
+        }
     }
-    else{
-        this.setState({check_textInputChange:false})
+    secureTextEntry=()=>{
+        this.setState({secureTextEntry:!this.state.secureTextEntry})
     }
-  }
-  secureTextEntry=()=>{
-      this.setState({secureTextEntry:!this.state.secureTextEntry})
-  }
 
   render(props) {
     const { navigation } = this.props;
@@ -82,7 +91,7 @@ class Login extends Component {
                     <Text style={{color:"#009db1",marginTop:15,fontFamily:'kanitLight'}}>Forgot password?</Text>
                 </TouchableOpacity>
                 <View style={styles.botton}>
-                    <TouchableOpacity style={styles.signin} onPress={()=>this.props.navigation.reset({index:0,routes:[{name:'Bottomtab'}]}) } >
+                    <TouchableOpacity style={styles.signin} onPress={this.onLogin } >
                         <Text style={styles.text_singIn}>SignIn</Text>
                     </TouchableOpacity>
 
