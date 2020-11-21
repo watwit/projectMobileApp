@@ -39,7 +39,7 @@ class Food extends Component {
       <View style={{marginLeft:20}}>
         <TouchableOpacity onPress={()=>{this.setState({selectedID:item.id})}} style={{backgroundColor:backgroundColor,borderRadius:5}}>
         <View style={{height:27,width:'100%'}}>
-              <Text style={{margin:5,fontSize:11,color:textcolor}}>{item.name}</Text>
+              <Text style={{margin:5,fontSize:11,color:textcolor,fontFamily:'kanitRegular'}}>{item.name}</Text>
         </View>
         </TouchableOpacity>
       </View>
@@ -54,17 +54,22 @@ class Food extends Component {
     return(
       <View style={{padding:8}}>
         <TouchableOpacity onPress={()=>{this.setState({showModal:true}),this.setState({id:item.id})}}>
-          <View style={{backgroundColor:'white',
-                        height:120,width:'94%',
-                        borderRadius:15,borderWidth:1,
-                        flexDirection:'row',
-                        alignItems:'center',
-                        marginLeft:10,
-                        }}>
-            <Image source={{uri:item.url}} style={{height:80,width:80,marginLeft:15,borderRadius:15}}/>
-            <Text style={{marginLeft:60,fontSize:20}}>{item.name}</Text>
-            <Text style={{marginRight:10,marginLeft:30,fontSize:20}}>{item.price+" บาท"}</Text>
+          <View style={styles.foodBar}>
+            <View style={{flex:1,height:120,justifyContent:'center'}}>
+              <Image source={{uri:item.url}} style={{height:80,width:80,marginLeft:15,borderRadius:15}}/>
+            </View>
+
+            <View style={{flex:1,height:120,justifyContent:'center'}}>
+                <Text style={{fontSize:20,fontFamily:'kanitRegular'}}>{item.name}</Text>
+            </View>
+
+            <View style={{flex:1,height:120,justifyContent:'center'}}>
+                <Text style={{marginRight:10,marginLeft:30,fontSize:20,fontFamily:'kanitRegular'}}>{item.price+" บาท"}</Text>
+            </View>
+            
+            
           </View>
+
           {item.id==this.state.id&&<Modal transparent={true} visible={this.state.showModal} animationType="slide">
             <View  style={{backgroundColor:'#00000060',flex:1}}>
                 <View style={{backgroundColor:'white',marginTop:100,marginBottom:200,marginLeft:20,marginRight:20,borderRadius:10,flex:1}}>
@@ -160,6 +165,15 @@ const styles = StyleSheet.create({
     height:'8%',
     backgroundColor:'black',
     flexDirection:'row',
+  },
+  foodBar:{backgroundColor:'white',
+  height:120,
+  width:'94%',
+  borderRadius:15,
+  borderWidth:1,
+  flexDirection:'row',
+  alignItems:'center',
+  marginLeft:10,
   }
   });
 
