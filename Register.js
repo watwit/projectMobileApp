@@ -20,46 +20,86 @@ class Register extends Component {
         secureTextEntryConfirm:true,
         email:null,
         name:null,
+        chackPass:false,
+        chackConfrimPass:false
     };
   }
-  componentDidMount=()=>{
-    firestore.listeningCurrentUser(this.listeningCurrentUser);
-  }
-  listeningCurrentUser=(user)=>{
-      console.log(user.uid)
-  }
+//   componentDidMount=()=>{
+//     firestore.listeningCurrentUser(this.listeningCurrentUser);
+//   }
+//   listeningCurrentUser=async (user)=>{
+//     if(!user){
+//         firestore.test();
+//     }
+//   }
   success=(docRef)=>{
-    Alert.alert(
-        "Success",
-        "Add Your Account Success",
-        [
-          { text: "OK", onPress: () => this.props.navigation.navigate("Login") }
-        ],
-        { cancelable: false }
-      );
+      console.log("Add Your Account Success")
+    // Alert.alert(
+    //     "Success",
+    //     "Add Your Account Success",
+    //     [
+    //       { text: "OK", onPress: () => this.props.navigation.navigate("Login") }
+    //     ],
+    //     { cancelable: false }
+    //   );
   }
   reject=(error)=>{
       console.log(error)
   }
   onRegisterAut=()=>{
     console.log("onRegisterAut")
-    firestore.createUser(this.state.email,this.state.password,this.unsuccess);
+    if(this.state.check_textInputChangeName && this.state.check_textInputChange && !this.state.chackPass && !this.state.chackConfrimPass){
+        firestore.createUser(this.state.email,this.state.password,this.unsuccess);
+    }
+    else{
+        Alert.alert(
+        "Creaste Account Fail",
+        "กรอกข้อมูลให้ถูกต้องครบถ้วน",
+        [
+          { text: "OK"}
+        ],
+        { cancelable: false }
+      );
+    }
   }
-  addUser=async()=>{
-    console.log("addUser")
-    var User={
-            email:this.state.email,
-            password:this.state.password,
-            name:this.state.name,
-            fb:"-",
-            ig:"-",
-            line:"-",
-            caption:"-",
-            avatar:"-",
-            type:"User",
-            status:"0"
+//   addUser=async()=>{
+//     console.log("addUser")
+//     var User={
+//             email:this.state.email,
+//             password:this.state.password,
+//             name:this.state.name,
+//             fb:"-",
+//             ig:"-",
+//             line:"-",
+//             caption:"-",
+//             avatar:"-",
+//             type:"User",
+//             status:"0"
+//           }
+//     await firestore.addUser(User,this.success,this.reject);
+//   }
+  checkCharactersPassword=(value)=>{
+    this.setState({password:value})
+      if(value.length!=0){
+          if(value.length<6){
+              this.setState({chackPass:true})
           }
-    await firestore.addUser(User,this.success,this.reject);
+          else{
+            this.setState({chackPass:false})
+          }
+      }
+  }
+  checkPasswordMatch=(value)=>{
+    this.setState({confirmPassword:value})
+    if(value.length!=0){
+        if(value!==this.state.password){
+            this.setState({chackConfrimPass:true})
+        }
+        else{
+          this.setState({chackConfrimPass:false})
+        }
+    }
+
   }
   
   textInputChange=(value)=>{
@@ -125,7 +165,6 @@ class Register extends Component {
                     </Animatable.View>
                     : null}
                 </View>
-
                 <Text style={[styles.text_footer,{marginTop:15}]}>Password</Text>
                 <View style={styles.action}>
                     <AntDesign name="lock1" size={20} color="black" />
@@ -135,13 +174,14 @@ class Register extends Component {
                         secureTextEntry={true}
                         style={styles.text_input}
                         value={this.state.password}
-                        onChangeText={(text)=>this.setState({password:text})}
+                        onChangeText={(text)=>this.checkCharactersPassword(text)}
                       />
                     : <TextInput 
                         placeholder="Your Password"
                         style={styles.text_input}
                         value={this.state.password}
-                        onChangeText={(text)=>this.setState({password:text})}
+                        secureTextEntry={false}
+                        onChangeText={(text)=>this.checkCharactersPassword(text)}
                      />
                     }
                     
@@ -152,6 +192,10 @@ class Register extends Component {
                        
                     </TouchableOpacity>
                 </View>
+                {this.state.chackPass ?
+                <Text style={{fontFamily:'kanitLight',fontSize:16,color:'red'}}>Password at least 6 characters</Text>
+                :null
+                }
                 <Text style={[styles.text_footer,{marginTop:15}]}>Confirm Password</Text>
                 <View style={styles.action}>
                     <AntDesign name="lock1" size={20} color="black" />
@@ -161,13 +205,14 @@ class Register extends Component {
                         secureTextEntry={true}
                         style={styles.text_input}
                         value={this.state.confirmPassword}
-                        onChangeText={(text)=>this.setState({confirmPassword:text})}
+                        onChangeText={(text)=>this.checkPasswordMatch(text)}
                       />
                     : <TextInput 
                         placeholder="Your Password"
+                        secureTextEntry={false}
                         style={styles.text_input}
                         value={this.state.confirmPassword}
-                        onChangeText={(text)=>this.setState({confirmPassword:text})}
+                        onChangeText={(text)=>this.checkPasswordMatch(text)}
                      />
                     }
                     
@@ -178,6 +223,10 @@ class Register extends Component {
                        
                     </TouchableOpacity>
                 </View>
+                {this.state.chackConfrimPass ?
+                <Text style={{fontFamily:'kanitLight',fontSize:16,color:'red'}}>Password not match</Text>
+                :null
+                }
                 <View style={styles.botton}>
                     <TouchableOpacity style={[styles.signUp,{marginTop:15}]} onPress={this.onRegisterAut}>
                         <Text style={styles.text_singUp}>SignUp</Text>

@@ -11,24 +11,32 @@ class Splash extends Component {
  
     };
   }
-
+//   componentDidMount(){
+//     setTimeout(() => {
+//         this.props.navigation.navigate('Login');
+//         this.props.navigation.reset({index:0,routes:[{name:'Login'}]}) 
+//     }, 2500)
+//   }
 
   listeningCurrentUserSuccess=(user)=>{
     console.log("splash")
 
-    if(!user){
+    if(user!==null){
+        // this.props.navigation.navigate('Bottomtab');
+        console.log(user.uid)
+        console.log(user.displayName)
+        this.props.navigation.reset({index:0,routes:[{name:'Bottomtab'}]}) 
+        
+    }
+    else{
         setTimeout(() => {
-            this.props.navigation.navigate('Login');
+            // this.props.navigation.navigate('Login');
             this.props.navigation.reset({index:0,routes:[{name:'Login'}]}) 
         }, 2500)
     }
-    else{
-        this.props.navigation.navigate('Bottomtab');
-        this.props.navigation.reset({index:0,routes:[{name:'Bottomtab'}]}) 
-    }
   }
    componentDidMount() {
-    this.authListener=this.authFirebaseListener=firestore.listeningCurrentUser(this.listeningCurrentUserSuccess);
+    this.authFirebaseListener=firestore.listeningCurrentUser(this.listeningCurrentUserSuccess);
     }
   render(props) {
     const { navigation } = this.props;
