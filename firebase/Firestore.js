@@ -1,5 +1,6 @@
 import  * as firebase from 'firebase';
 import '@firebase/firestore';
+import "@firebase/auth";
 class Firestore{
   constructor(){
     if(!firebase.apps.length){
@@ -29,9 +30,14 @@ class Firestore{
   //     reject(error);
   //   });
   // }
-  signIn=(email,password,reject)=>{
-    firebase.auth().signInWithEmailAndPassword(email,password).catch(function(error){
-      reject(error);
+  
+  signIn=(email,password,success,reject)=>{
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((user) => {
+      success(user)
+    })
+    .catch((error) => {
+      reject(error)
     });
   }
   signOut=(success,reject)=>{
@@ -50,19 +56,31 @@ class Firestore{
   }
   createUser=(email,password,reject)=>{
     firebase.auth().createUserWithEmailAndPassword(email,password)
+    .then((user) => {
+      console.log("firestore create success")
+      var user = firebase.auth().currentUser;
+      user.updateProfile({
+        displayName: "Jane Q. User",
+        photoURL: "https://example.com/jane-q-user/profile.jpg"
+      }).then(function() {
+        console.log("firestore update user success")
+      }).catch(function(error) {
+        console.log("firestore update user fail")
+      });
+    })
     .catch(function(error){
       reject(error);
     });
   }
   recoverAccount=(email,success,unsuccess)=>{
-    this.auth.sendPasswordResetEmail(email)
+    firebase.auth().sendPasswordResetEmail(email)
     .then(function(){
       success(null);
     })
     .catch(function(error){
       unsuccess(error);
     });
-  }
+  } 
   
 }
 const firestore = new Firestore();

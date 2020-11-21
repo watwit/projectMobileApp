@@ -1,27 +1,66 @@
 import React, { Component } from 'react';
 import {
-  View,Text,StyleSheet,TextInput,TouchableOpacity
+  View,Text,StyleSheet,TextInput,TouchableOpacity,Alert
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import firestore from './firebase/Firestore'
 class ForgotPassword extends Component {
   constructor(props){
     super(props);
      this.state = {
         check_textInputChange:false,
+        email:null
     };
   }
   
   textInputChange=(value)=>{
     if(value.length!==0){
         this.setState({check_textInputChange:true})
+        this.setState({email:value})
     }
     else{
         this.setState({check_textInputChange:false})
     }
+  }
+  unsuccess=(error)=>{
+    Alert.alert(
+        "ResetPassword Fail",
+        error.message,
+        [
+          { text: "OK"}
+        ],
+        { cancelable: false }
+    );
+  }
+
+  success=()=>{
+    Alert.alert(
+        "ResetPassword Success",
+        "Check Your E-mail",
+        [
+          { text: "OK",onPress: () => this.props.navigation.navigate("Login")}
+        ],
+        { cancelable: false }
+    );
+  }
+  resetPassword=()=>{
+      if(!this.state.check_textInputChange){
+        Alert.alert(
+            "ResetPassword Fail",
+             "กรุณากรอก E-mail",
+            [
+              { text: "OK"}
+            ],
+            { cancelable: false }
+        );
+      }
+      else{
+        firestore.recoverAccount(this.state.email,this.success,this.unsuccess)
+      }
   }
 
   render(props) {
@@ -48,7 +87,7 @@ class ForgotPassword extends Component {
                     : null}
                 </View>
                 <View style={styles.botton}>
-                    <TouchableOpacity style={[styles.send,{marginTop:15}]}>
+                    <TouchableOpacity style={[styles.send,{marginTop:15}]} onPress={this.resetPassword}>
                         <Text style={styles.text_send}>Send</Text>
                     </TouchableOpacity>
                 </View>

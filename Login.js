@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View,Text,StyleSheet,TextInput,TouchableOpacity
+  View,Text,StyleSheet,TextInput,TouchableOpacity,Alert,ActivityIndicator
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -15,31 +15,100 @@ class Login extends Component {
             check_textInputChange:false,
             email:null,
             password:null,
-            secureTextEntry:true
+            secureTextEntry:true,
+            loading:false
         };
+        
     }
+    listeningCurrentUserSuccess=(user)=>{
+        console.log("login Screen")
+    
+        if(user){
+            // this.props.navigation.navigate('Bottomtab');
+            this.props.navigation.reset({index:0,routes:[{name:'Bottomtab'}]})
+        }
+             
+    }
+    componentDidMount() {
+        this.authFirebaseListener=firestore.listeningCurrentUser(this.listeningCurrentUserSuccess);
+        }
+    onLoginSuccess(user){
+        console.log("login success")
+    }
+
     onLoginFail=(error)=>{
-        console.log("onLoginFail");
+        Alert.alert(
+                "Login Fail",
+                error.message,
+                [
+                  { text: "OK"}
+                ],
+                { cancelable: false }
+              );
     }
     onLogin=()=>{
-        firestore.signIn(this.state.email,this.state.password,this.onLoginFail);
+        if(!this.state.check_textInputChange){
+            Alert.alert(
+                "Login Fail",
+                "E-mail ของคุณไม่ถูกต้อง",
+                [
+                  { text: "OK"}
+                ],
+                { cancelable: false }
+              );
+        }
+        else if(!this.state.password){
+            Alert.alert(
+                "Login Fail",
+                "password ของคุณไม่ถูกต้อง",
+                [
+                  { text: "OK"}
+                ],
+                { cancelable: false }
+            );
+        }
+        else{
+            // this.setState({loading:true});
+            // firestore.firebase.auth().signInWithEmailAndPassword(this.state.email,this.state.password)
+            // .then((user)=>{ 
+            //     console.log("test success")
+            //     this.setState({loading:false});
+            //     alert("Successful , "+email+" "+password); 
+            // })
+            // .catch((error)=>{ 
+            //     console.log("test error")
+            //     this.setState({loading:false});
+            //     alert(msgError.message);
+            // });
+            firestore.signIn(this.state.email,this.state.password,this.onLoginSuccess,this.onLoginFail);
+        }
     }
   
     textInputChange=(value)=>{
-        if(value.length!==0){
-            this.setState({check_textInputChange:true})
-            this.setState({email:value})
-        }
-        else{
+        this.setState({email:value})
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (reg.test(value) === false) {
             this.setState({check_textInputChange:false})
+            return false;
+        }
+          else {
+            this.setState({check_textInputChange:true})
         }
     }
     secureTextEntry=()=>{
         this.setState({secureTextEntry:!this.state.secureTextEntry})
     }
+    // renderButton(){
+    //     if(this.state.loading){
+    //         return(<ActivityIndicator size='large' color='black'/>);
+    //     }else{
+    //         return(<TouchableOpacity style={styles.signin} onPress={this.onLogin } >
+    //             <Text style={styles.text_singIn}>SignIn</Text>
+    //                 </TouchableOpacity>);
+    //     }
+    // }
 
   render(props) {
-    const { navigation } = this.props;
     return (
         <View style={{ flex: 1,backgroundColor:"#000000" }}>
             <View style={styles.header}>
@@ -50,6 +119,7 @@ class Login extends Component {
                 <View style={styles.action}>
                     <FontAwesome5 name="user-circle" size={20} color="black" />
                     <TextInput 
+                        keyboardType='email-address'
                         placeholder="Your E-Mail"
                         style={styles.text_input}
                         onChangeText={(text)=>this.textInputChange(text)}
@@ -64,21 +134,21 @@ class Login extends Component {
                 <Text style={[styles.text_footer,{marginTop:35}]}>Password</Text>
                 <View style={styles.action}>
                     <AntDesign name="lock1" size={20} color="black" />
-                    {this.state.secureTextEntry 
-                    ? <TextInput 
+                    {this.state.secureTextEntry ?
+                         <TextInput 
+                         placeholder="Your Password"
+                         secureTextEntry={true}
+                         style={styles.text_input}
+                         value={this.state.password}
+                         onChangeText={(text)=>this.setState({password:text})}
+                       />
+                        : <TextInput 
                         placeholder="Your Password"
-                        secureTextEntry={true}
+                        secureTextEntry={false}
                         style={styles.text_input}
                         value={this.state.password}
                         onChangeText={(text)=>this.setState({password:text})}
-                      />
-                    : <TextInput 
-                        placeholder="Your Password"
-                        style={styles.text_input}
-                        value={this.state.password}
-                        onChangeText={(text)=>this.setState({password:text})}
-                     />
-                    }
+                     />}
                     
                     <TouchableOpacity onPress={()=>this.secureTextEntry()}>
                         {this.state.secureTextEntry ?
@@ -91,6 +161,7 @@ class Login extends Component {
                     <Text style={{color:"#009db1",marginTop:15,fontFamily:'kanitLight'}}>Forgot password?</Text>
                 </TouchableOpacity>
                 <View style={styles.botton}>
+                    {/* {this.renderButton()} */}
                     <TouchableOpacity style={styles.signin} onPress={this.onLogin } >
                         <Text style={styles.text_singIn}>SignIn</Text>
                     </TouchableOpacity>
