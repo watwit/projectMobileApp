@@ -22,12 +22,12 @@ class Firestore{
   }
   // addUser=(User,success,reject)=>{
   //   User.createdDate=firebase.firestore.FieldValue.serverTimestamp();
-  //   firebase.firestore().collection('User').add(User)
+  //   firebase.firestore().collection('Car').doc(User.id).set(User)
   //   .then(function (docRef) {
-  //     success(docRef);
+  //     console.log("add user with id success")
   //     })
   //   .catch(function (error) {
-  //     reject(error);
+  //     console.log('error')
   //   });
   // }
   
@@ -54,16 +54,34 @@ class Firestore{
       getSuccess(user);
     });  
   }
-  createUser=(email,password,reject)=>{
-    firebase.auth().createUserWithEmailAndPassword(email,password)
+  createUser=async(email,password,name,reject)=>{
+    await firebase.auth().createUserWithEmailAndPassword(email,password)
     .then((user) => {
       console.log("firestore create success")
       var user =firebase.auth().currentUser;
       user.updateProfile({
-        displayName: "Jane Q. User",
-        photoURL: "https://example.com/jane-q-user/profile.jpg"
+        displayName: name,
       }).then(function() {
         console.log("firestore update user success")
+        var User={
+            id:user.uid,
+            name:name,
+            fb:"-",
+            ig:"-",
+            line:"-",
+            caption:"-",
+            avatar:"-",
+            type:"User",
+            status:"0"
+        }
+        User.createdDate=firebase.firestore.FieldValue.serverTimestamp();
+        firebase.firestore().collection('Car').doc(User.id).set(User)
+        .then(function (docRef) {
+        console.log("add user with id success")
+        })
+        .catch(function (error) {
+          console.log('error')
+        });
       }).catch(function(error) {
         console.log("firestore update user fail")
       });

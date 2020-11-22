@@ -33,6 +33,14 @@ class Login extends Component {
     //     }
     onLoginSuccess(user){
         console.log("login success")
+            // Alert.alert(
+    //     "Success",
+    //     "Add Your Account Success",
+    //     [
+    //       { text: "OK", onPress: () => this.props.navigation.navigate("Login") }
+    //     ],
+    //     { cancelable: false }
+    //   );
     }
 
     onLoginFail=(error)=>{
