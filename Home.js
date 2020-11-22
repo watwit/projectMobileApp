@@ -99,7 +99,7 @@ class Home extends Component {
                       </View>
                       <View style={{flex:10}}>
                         <View style={{flex:1,margin:10,}}>
-                          <TextInput placeholder="บอกความรู้สึกของคุณ..." style={{marginLeft:10,fontSize:18,width:'96%',fontFamily:'kanitRegular'}}></TextInput>
+                          <TextInput multiline={true} placeholder="บอกความรู้สึกของคุณ..." style={{marginLeft:10,fontSize:18,width:'96%',fontFamily:'kanitRegular'}}></TextInput>
                           {this.state.picture!=null&&<Image style={{flex:1,marginTop:5,resizeMode:'cover'}} source={{uri:this.state.picture}}></Image>}
                         </View>
                         <View style={{flex:1}}>

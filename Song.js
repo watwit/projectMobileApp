@@ -17,7 +17,7 @@ class Song extends Component {
   renderItem=({item})=>{
     return(
       <View style={{margin:10}}>
-      <View style={{backgroundColor:'white',borderWidth:1,borderRadius:10,flexDirection:'row',marginRight:10,marginLeft:10}}>
+      <View style={styles.songBar}>
             <View style={{height:80,width:'15%',borderRadius:10,margin:10,justifyContent:'center',alignItems:'center',flexDirection:'row'}}>
                 <Text style={{color:'black',marginLeft:10,fontSize:20,fontFamily:'kanitSemiBold'}}>{item.id}</Text>
                 <View style={{width:1,height:60,backgroundColor:'black',marginLeft:20}}></View>
@@ -174,6 +174,22 @@ const styles = StyleSheet.create({
     alignItems:'center'
     //backgroundColor:'black'
   },
+  songBar:{backgroundColor:'white',
+  //borderWidth:1,
+  borderRadius:10,
+  flexDirection:'row',
+  marginRight:10,
+  marginLeft:10,
+  shadowColor: "#000",
+  shadowOffset: {
+    width: 0,
+    height: 3,
+  },
+  shadowOpacity: 0.27,
+  shadowRadius: 4.65,
+
+  elevation: 6,
+}
   });
 
 
