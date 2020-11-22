@@ -6,7 +6,6 @@ import Constants from 'expo-constants';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import * as song from './song.json'
-
 class Song extends Component {
   constructor(props){
     super(props);
@@ -34,14 +33,11 @@ class Song extends Component {
       </View>
     );
   }
-
-  AddSong =()=>{
-    
-  }
   render(props) {
     const { navigation } = this.props;
+    
     return (
-      <View style={{flex:1}}>
+      <View>
         <View style={{backgroundColor:'black',height:100,width:'90%',borderWidth:1,borderRadius:10,marginLeft:20,marginRight:20,flexDirection:'row',marginBottom:15}}>
             <View style={{backgroundColor:'#E2E2E2',height:80,width:80,borderRadius:10,margin:10,justifyContent:'center',alignItems:'center'}}>
                 <Image source={{uri:'https://image.flaticon.com/icons/png/512/49/49831.png'}} style={{height:70,width:70}}></Image>
@@ -56,23 +52,22 @@ class Song extends Component {
         <View style={{backgroundColor:'black',width:200,height:30,borderRadius:5,marginLeft:20,alignItems:'center',justifyContent:'center'}}>
           <Text style={{fontFamily:'kanitSemiBold',color:'white'}}>คิวเพลงทั้งหมด 3 เพลง</Text>
         </View>
-
-        <FlatList
+        <View style={{marginTop:20,marginLeft:20,marginRight:20}}>
+            <FlatList
             data={song.test}
             keyExtractor = {item=>item.id}
             renderItem={this.renderItem}
             ref={(ref)=>{this.FlatListRef=ref}}
-        />
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={()=>{this.setState({showModal:true})}}
-          style={styles.touchableOpacityStyle}>
-          <View style={styles.floatingButtonStyle}>
-                <Entypo  name="plus" size={24} color="white" />
-          </View>
-        </TouchableOpacity>
+          />
 
-        <Modal 
+
+          <View style={{backgroundColor:'red',height:60,width:'100%',alignItems:'flex-end'}}>
+            <TouchableOpacity onPress={()=>{this.setState({showModal:true})}}>
+              <View style={{backgroundColor:'#FB7070',height:60,width:60,borderRadius:50,alignItems:'center',justifyContent:'center'}}>
+                <Text style={{color:'white',fontSize:40}}>&#43;</Text>
+              </View>
+
+              <Modal 
                     transparent={true} 
                     visible={this.state.showModal} 
                     animationType="slide"
@@ -118,6 +113,9 @@ class Song extends Component {
                 </View>
             </View>
           </Modal>
+            </TouchableOpacity>
+          </View>
+        </View>
         
       </View>
     );
