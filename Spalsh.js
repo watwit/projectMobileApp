@@ -17,15 +17,27 @@ class Splash extends Component {
 //         this.props.navigation.reset({index:0,routes:[{name:'Login'}]}) 
 //     }, 2500)
 //   }
+    onSignOutSuccess=()=>{
+        console.log('Sign Out Success');
+    }
+    unsuccess=(error)=>{
+        console.log(error)
+    }
 
   listeningCurrentUserSuccess=(user)=>{
     console.log("splash")
 
     if(user!==null){
-        // this.props.navigation.navigate('Bottomtab');
         console.log(user.uid)
         console.log(user.displayName)
-        this.props.navigation.reset({index:0,routes:[{name:'Bottomtab'}]}) 
+        if(user.displayName!==null){
+            this.props.navigation.reset({index:0,routes:[{name:'Bottomtab'}]}) 
+        }
+        else if(user.displayName===null){
+            console.log("nulllllllllllll")
+            firestore.signOut(this.onSignOutSuccess,this.onReject);
+            //this.props.navigation.reset({index:0,routes:[{name:'Login'}]}) 
+        }
         
     }
     else{

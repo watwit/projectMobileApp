@@ -52,13 +52,13 @@ class Firestore{
   listeningCurrentUser=(getSuccess)=>{
     firebase.auth().onAuthStateChanged(function(user){
       getSuccess(user);
-      });  
+    });  
   }
   createUser=(email,password,reject)=>{
     firebase.auth().createUserWithEmailAndPassword(email,password)
     .then((user) => {
       console.log("firestore create success")
-      var user = firebase.auth().currentUser;
+      var user =firebase.auth().currentUser;
       user.updateProfile({
         displayName: "Jane Q. User",
         photoURL: "https://example.com/jane-q-user/profile.jpg"

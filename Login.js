@@ -20,18 +20,17 @@ class Login extends Component {
         };
         
     }
-    listeningCurrentUserSuccess=(user)=>{
-        console.log("login Screen")
+    // listeningCurrentUserSuccess=(user)=>{
+    //     console.log("login Screen")
     
-        if(user){
-            // this.props.navigation.navigate('Bottomtab');
-            this.props.navigation.reset({index:0,routes:[{name:'Bottomtab'}]})
-        }
+    //     if(user){
+    //         this.props.navigation.reset({index:0,routes:[{name:'Bottomtab'}]})
+    //     }
              
-    }
-    componentDidMount() {
-        this.authFirebaseListener=firestore.listeningCurrentUser(this.listeningCurrentUserSuccess);
-        }
+    // }
+    // componentDidMount() {
+    //     this.authFirebaseListener=firestore.listeningCurrentUser(this.listeningCurrentUserSuccess);
+    //     }
     onLoginSuccess(user){
         console.log("login success")
     }

@@ -44,12 +44,19 @@ class Register extends Component {
     //   );
   }
   reject=(error)=>{
-      console.log(error)
+        Alert.alert(
+        "Creaste Account Fail",
+        error.message,
+        [
+          { text: "OK"}
+        ],
+        { cancelable: false }
+      );
   }
   onRegisterAut=()=>{
     console.log("onRegisterAut")
     if(this.state.check_textInputChangeName && this.state.check_textInputChange && !this.state.chackPass && !this.state.chackConfrimPass){
-        firestore.createUser(this.state.email,this.state.password,this.unsuccess);
+        firestore.createUser(this.state.email,this.state.password,this.reject);
     }
     else{
         Alert.alert(
@@ -228,7 +235,7 @@ class Register extends Component {
                 :null
                 }
                 <View style={styles.botton}>
-                    <TouchableOpacity style={[styles.signUp,{marginTop:15}]} onPress={this.onRegisterAut}>
+                    <TouchableOpacity style={[styles.signUp,{marginTop:10}]} onPress={this.onRegisterAut}>
                         <Text style={styles.text_singUp}>SignUp</Text>
                     </TouchableOpacity>
                 </View>
@@ -277,7 +284,7 @@ const styles = StyleSheet.create({
     },
     botton:{
         alignItems:"center",
-        marginTop:50,
+        marginTop:30,
     },
     signUp:{
         width:"100%",
