@@ -134,7 +134,7 @@ class Food extends Component {
   render(props) {
     const { navigation } = this.props;
     return (
-      <View >
+      <View style={{flex:1}}>
             <View style={{height:50,width:'100%'}}>
               <FlatList
             horizontal
@@ -145,15 +145,13 @@ class Food extends Component {
             ref={(ref)=>{this.FlatListRef=ref}}
             />
             </View>
-            <View style={{height:'93%'}}>
-                <FlatList
+              <FlatList
                 data={listFood.list}
                 keyExtractor = {item=>item.id}
                 renderItem={this.renderFood}
                 //ItemSeparatorComponent={this.renderSeparator}
                 ref={(ref)=>{this.FlatListRef=ref}}
               />
-            </View>
     
     </View>
     );
