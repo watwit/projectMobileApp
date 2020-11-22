@@ -36,9 +36,8 @@ class Splash extends Component {
         else if(user.displayName===null){
             console.log("nulllllllllllll")
             firestore.signOut(this.onSignOutSuccess,this.onReject);
-            //this.props.navigation.reset({index:0,routes:[{name:'Login'}]}) 
+            this.props.navigation.reset({index:0,routes:[{name:'Login'}]}) 
         }
-        
     }
     else{
         setTimeout(() => {
